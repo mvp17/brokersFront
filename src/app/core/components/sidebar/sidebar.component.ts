@@ -10,7 +10,13 @@ export class SidebarComponent {
   @Input() isExpanded: boolean = false;
   @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  isSubmenuOpen: { [key: string]: boolean } = {};
+  
   constructor(public authService: AuthService) { }
 
   handleSidebarToggle = () => this.toggleSidebar.emit(!this.isExpanded);
+
+  toggleSubmenu(menu: string) {
+    this.isSubmenuOpen[menu] = !this.isSubmenuOpen[menu];
+  }
 }

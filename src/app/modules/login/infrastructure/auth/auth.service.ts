@@ -6,7 +6,6 @@ import { AuthenticationRequest } from '../../domain/AuthenticationRequest';
 import { RegisterRequest } from '../../domain/RegisterRequest';
 import { AuthenticationResponse } from '../../domain/AuthenticationResponse';
 import { Observable } from 'rxjs';
-import { paths } from 'src/app/core/application/paths.routes';
 
 
 @Injectable({
@@ -42,7 +41,7 @@ export class AuthService {
     if (confirm("Leaving already?")){
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('email');
-      this.router.navigate([paths.signin]);
+      this.router.navigate(['/signin']);
     }
   }
 

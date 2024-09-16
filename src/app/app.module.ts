@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from 'src/app/core/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { ErrorIntercept } from './core/infrastructure/error.interceptor';
+import { ErrorIntercept } from './core/error.interceptor';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

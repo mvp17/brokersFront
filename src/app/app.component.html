@@ -1,4 +1,10 @@
-<sidebar-boots [isExpanded]="sidebarExpanded" (toggleSidebar)="sidebarExpanded = !sidebarExpanded"></sidebar-boots>
-<div class="content" [ngClass]="{ 'sidebarExpanded': sidebarExpanded }">
-    <router-outlet></router-outlet>
-</div>
+<div class="app-container">
+    <sidebar-boots
+      [isExpanded]="sidebarExpanded"
+      (toggleSidebar)="sidebarExpanded = !sidebarExpanded">
+    </sidebar-boots>
+    <div class="main-content" [ngClass]="{ 'expanded': sidebarExpanded }">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

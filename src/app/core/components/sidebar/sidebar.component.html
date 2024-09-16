@@ -1,0 +1,37 @@
+<div class="sidebar" [ngClass]="{ 'expanded': isExpanded }">
+  <div class="header">
+    <h1 class="title">Menu</h1>
+    <div class="toggle" (click)="handleSidebarToggle()">
+      <span class="chevron"></span>
+    </div>
+  </div>
+
+  <div class="content">
+    <!-- Main menu item with dropdown -->
+    <div class="link">
+      <div class="content">
+        <div class="title">Electricity</div>
+        <span class="chevron"></span>
+      </div>
+
+      <!-- Submenu content (flyout) -->
+      <div class="flyout">
+        <div class="arrow"></div> <!-- Arrow pointing to the main menu -->
+        <div class="submenu-content">
+          <div class="content" [routerLink]="['electricity/predefinedRates']" [routerLinkActive]="'active'">
+            <div class="title">Predefined rates</div>
+          </div>
+          <div class="content" [routerLink]="['electricity/comparativeAnalysis']" [routerLinkActive]="'active'">
+            <div class="title">Comparative analysis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div *ngIf="authService.loggedIn()">
+      <button class="btn btn-danger" (click)="authService.logout()">Log out</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+// Ensure the content area adjusts based on the sidebar width
+.app-container {
+    display: flex;
+    height: 100vh; // Full viewport height
+    overflow: hidden; // Prevent scrollbars on the body
+  }
+  
+  .main-content {
+    margin-left: 60px; // Default margin to account for the sidebar width
+    transition: margin-left 0.3s ease; // Smooth transition for expanding/collapsing sidebar
+  
+    &.expanded {
+      margin-left: 150px; // Margin for the expanded sidebar width
+    }
+  
+    flex: 1; // Take up remaining space
+    overflow: auto; // Add scrollbars if content overflows
+  }
+  

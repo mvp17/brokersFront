@@ -1,5 +1,5 @@
 import { Component, OnDestroy, TemplateRef } from '@angular/core';
-import { ToastService } from './toast.service';
+import { ToastService } from '../../services/toast/toast.service';
 import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
 import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 

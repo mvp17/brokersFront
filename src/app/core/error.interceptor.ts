@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { ModalComponent } from '../application/components/modal/modal.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @Injectable({
   providedIn: 'root',
