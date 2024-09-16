@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'brokers';
+
+  public sidebarExpanded: boolean;
+
+  constructor() {
+    this.sidebarExpanded = true;
+  }
 }

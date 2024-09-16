@@ -1,0 +1,58 @@
+
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Sign in
+            </div>
+            <div class="card-body">
+                <form [formGroup] = "signInForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3 row align-items-center search-row">
+                        <div>
+                            <input type="text" class = "b-input__element" formControlName = "email" placeholder="Email"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signInFormControls['email'].errors }" />
+                            <div *ngIf="submitted && signInFormControls['email'].errors" class="invalid-feedback">
+                                <div *ngIf="signInFormControls['email'].errors['required']">
+                                    Email is required
+                                </div>
+                                <div *ngIf="signInFormControls['email'].errors['email']">
+                                    Email must be a valid email address
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="password" style = "margin-top: 5px;" class = "b-input__element" formControlName = "password" placeholder="Password"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signInFormControls['password'].errors }" />
+                            <div *ngIf="submitted && signInFormControls['password'].errors" class="invalid-feedback">
+                                <div *ngIf="signInFormControls['password'].errors['required']">
+                                    Password is required
+                                </div>
+                                <div *ngIf="signInFormControls['password'].errors['minlength']">
+                                    Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row align-items-center justify-content-end search-row">
+                        <div class="margin-button" style="margin-top: 20px;">
+                            <div>
+                                <a style="cursor: pointer;" (click)="goToSignUp()">Not registered yet?</a>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="btn btn-success">
+                                    Enter
+                                </button>
+                                
+                                <button type="reset" class="btn btn-warning" style="margin-left: 5px;" (click)="resetForm(signInForm)">
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

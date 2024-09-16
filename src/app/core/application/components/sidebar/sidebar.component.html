@@ -1,0 +1,31 @@
+<div class="sidebar" [ngClass]="{ 'expanded': isExpanded }">
+    <div class="header">
+      <h1 class="title">
+        Menu
+      </h1>
+      <div class="toggle" (click)="handleSidebarToggle()">
+        <span class="chevron"></span>
+      </div>
+    </div>
+    <div class="content">
+      <div class="link">
+        <div class="content" [routerLink]="['adoptions']" [routerLinkActive]="'active'">
+          <div class="title">Adopciones</div>
+        </div>
+      </div>
+      <div class="link">
+        <div class="content" [routerLink]="['tree-viewer']" [routerLinkActive]="'active'">
+          <div class="title">Visor de árboles</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="footer">
+      <div *ngIf="authService.loggedIn()">
+        <button class="btn btn-danger" (click)="authService.logout()">
+            Salir
+        </button>
+    </div>
+    </div>
+  </div>
+  

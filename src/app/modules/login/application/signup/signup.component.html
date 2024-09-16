@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Sign Up
+            </div>
+            <div class="card-body">
+                <form [formGroup] = "signUpForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3 row align-items-center search-row">
+                        <div>
+                            <input type = "text" class = "b-input__element" formControlName = "username" placeholder = "Username"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signUpFormControls['username'].errors }" />
+                            <div *ngIf="submitted && signUpFormControls['username'].errors" class="invalid-feedback">
+                                <div *ngIf="signUpFormControls['username'].errors['required']">
+                                    Username is required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="text" style = "margin-top: 5px;" class = "b-input__element" formControlName = "email" placeholder="Email"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signUpFormControls['email'].errors }" />
+                            <div *ngIf="submitted && signUpFormControls['email'].errors" class="invalid-feedback">
+                                <div *ngIf="signUpFormControls['email'].errors['required']">
+                                    Email is required
+                                </div>
+                                <div *ngIf="signUpFormControls['email'].errors['email']">
+                                    Email must be a valid email address
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="password" style = "margin-top: 5px;" class = "b-input__element" formControlName = "password" placeholder="Password"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signUpFormControls['password'].errors }" />
+                            <div *ngIf="submitted && signUpFormControls['password'].errors" class="invalid-feedback">
+                                <div *ngIf="signUpFormControls['password'].errors['required']">
+                                    Password is required
+                                </div>
+                                <div *ngIf="signUpFormControls['password'].errors['minlength']">
+                                    Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row align-items-center justify-content-end search-row">
+                        <div class="margin-button" style="margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary btn-block" style="margin-right: 5px;">
+                                Sign Up
+                            </button>
+
+                            <button style="margin-right: 5px;" class="btn btn-danger" (click)="onCancel()">
+                                Cancel
+                            </button>
+                            
+                            <button type="reset" class="btn btn-warning" (click)="resetForm(signUpForm)">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
