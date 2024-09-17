@@ -46,7 +46,7 @@
         </table>
         <div *ngIf="render">
             <div class="col-lg-12 d-flex justify-content-center">
-                <label *ngIf="collectionSize > 0" class="b-input__label" style="font-weight: bold;">Mostrando registros del {{recordMostrarDesde + 1}} al {{recordMostrarHasta}}, registros totales: {{collectionSize}}, Página {{numeroPagina}}/{{paginasTotales}}</label>
+                <label *ngIf="collectionSize > 0" class="b-input__label" style="font-weight: bold;">Showing records from {{recordMostrarDesde + 1}} to {{recordMostrarHasta}}, total records: {{collectionSize}}, Page {{numeroPagina}}/{{paginasTotales}}</label>
             </div>
             <div class="col-lg-12 d-flex justify-content-center">
                 <ngb-pagination [collectionSize]="collectionSize" [(page)]="numeroPagina" [boundaryLinks]="true" (updateListing)="updateListing($event)"></ngb-pagination>
@@ -54,7 +54,7 @@
         </div>
 
         <div *ngIf="!render" class="col-lg-12 d-flex justify-content-center">
-            <h2>noExistenResultadosBusqueda</h2>
+            <h2>Does not exist any result</h2>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="sidebar" [ngClass]="{ 'expanded': isExpanded }">
   <div class="header">
-    <h1 class="title">Menu</h1>
+    <h1 class="title" (click)="goToHome()" style="cursor: pointer">EneNuf</h1>
     <div class="toggle" (click)="handleSidebarToggle()">
       <span class="chevron"></span>
     </div>

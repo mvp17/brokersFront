@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/modules/login/infrastructure/auth/auth.service";
 
 @Component({
@@ -12,11 +13,15 @@ export class SidebarComponent {
 
   isSubmenuOpen: { [key: string]: boolean } = {};
   
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   handleSidebarToggle = () => this.toggleSidebar.emit(!this.isExpanded);
 
   toggleSubmenu(menu: string) {
     this.isSubmenuOpen[menu] = !this.isSubmenuOpen[menu];
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
   }
 }

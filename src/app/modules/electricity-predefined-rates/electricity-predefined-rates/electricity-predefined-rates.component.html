@@ -1,1 +1,21 @@
-<p>electricity-predefined-rates works!</p>
+<ngb-accordion [closeOthers]="false" activeIds="results-datatable">
+  <ngb-panel id="results-datatable" title="Predefined Rates">
+    <ng-template ngbPanelContent>
+      <button type="button" class="btn btn-success" (click)="showCreateNewPredefinedRate()">Create new rate</button>
+        <div class="m-bottom" style="margin-top:35px; overflow-y: scroll">
+            <table-boots 
+              [columns]="columns"
+              [records]="records"
+              [collectionSize]="collectionSize"
+              [render]="busquedaGestionTabla"
+              (tableEvents)="updateListing($event)"
+              [servicio]="true"
+              (onSort)="onSort($event)"
+              [buttonsAction]="buttonsAction"
+              (buttonsEvents)="buttonsEvents($event)"
+              >
+            </table-boots>
+          </div>
+    </ng-template>
+</ngb-panel>
+</ngb-accordion>
