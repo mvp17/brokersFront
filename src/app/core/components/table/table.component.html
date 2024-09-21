@@ -15,7 +15,7 @@
                     <span *ngIf="column.value != '' && column.isOrdenable && column.order == ''">
                         <fa-icon [icon]="arrowsUpDown"></fa-icon>
                     </span>
-                    <button *ngIf="column.value == '' " class="btn btn-primary btn-circle btn-sm" (click)="buttonEvent([], [], column.action)" matTooltip="Descargar excel resultados">
+                    <button *ngIf="column.value == '' " class="btn btn-primary btn-circle btn-sm" (click)="buttonEvent([], [], column.action)" matTooltip="Download data as excel file">
                         <fa-icon [icon]="excel"></fa-icon>
                     </button>
                 </th>

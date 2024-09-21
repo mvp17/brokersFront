@@ -22,7 +22,7 @@ export class ElectricityPredefinedRatesComponent {
     {
       action: 'detalle',
       subMenu: [],
-      matTooltip: 'Detalle',
+      matTooltip: 'Detail',
     },
   ];
   

@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ElectricityComparativeAnalysisComponent } from './electricity-comparative-analysis/electricity-comparative-analysis.component';
+import { ElectricityComparativeAnalysisComponent } from './components/electricity-comparative-analysis/electricity-comparative-analysis.component';
 
 const routes: Routes = [
     {
