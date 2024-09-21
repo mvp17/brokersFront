@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { TableColumn } from 'src/app/core/interfaces/TableColumn';
-import { HEADERS, TableService } from '../services/table.service';
+import { HEADERS, TableService } from '../../services/table.service';
 import { ExcelService } from 'src/app/core/services/excel/excel.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from 'src/app/core/components/modal/modal.component';
+import { ModalComponent } from '../modal/modal.component';
+import { DetailDataService } from '../../services/detail-data.service';
 
 @Component({
   selector: 'app-electricity-predefined-rates',
@@ -27,6 +28,7 @@ export class ElectricityPredefinedRatesComponent {
   
   constructor(public tableService: TableService, 
               private excelService: ExcelService,
+              private detailDataService: DetailDataService,
               private modalService: NgbModal) {
     this.columns = HEADERS.tableHeader;
     // Show table
@@ -66,27 +68,14 @@ export class ElectricityPredefinedRatesComponent {
         this.handleButtonExportExcelFileClick();
         break;
       case 'detalle':
+        this.detailDataService.rate = evento[1][0];
+        this.detailDataService.productType = evento[1][1];
+        this.detailDataService.singlePrice = evento[1][2];
+        this.detailDataService.greenPower = evento[1][3];
+        
         const modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
         modalRef.componentInstance.readCurrentRateOrigin = true;
-        /*
-        this.dataService.godfatherAdoptionResultTableData.adoptionDate =
-          evento[1][0];
-        this.dataService.godfatherAdoptionResultTableData.adoptionId =
-          evento[1][1];
-        this.dataService.godfatherAdoptionResultTableData.godfatherName =
-          evento[1][2];
-        this.dataService.godfatherAdoptionResultTableData.godfatherGender =
-          evento[1][3];
-        this.dataService.godfatherAdoptionResultTableData.treeName =
-          evento[1][5];
-        this.dataService.godfatherAdoptionResultTableData.treeSpecies =
-          evento[1][6];
-        this.dataService.godfatherAdoptionResultTableData.adoptionDistrict =
-          evento[1][8];
-        this.dataService.godfatherAdoptionResultTableData.adoptionNeigh =
-          evento[1][7];
-        this.router.navigate([paths.detail]);
-        */
+        
         break;
       default:
         break;

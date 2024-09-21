@@ -36,6 +36,7 @@ export class ErrorIntercept implements HttpInterceptor {
           // server-side error
           errorMessage = `Server Error Status: ${error.status} \n Message: ${error.message}`;
           const modalRef = this.modalService.open(ModalComponent);
+          modalRef.componentInstance.errorInterceptorOrigin = true;
           modalRef.componentInstance.body = errorMessage;
           this.router.navigate(['']);
         }

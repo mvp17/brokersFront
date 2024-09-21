@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ElectricityPredefinedRatesComponent } from './electricity-predefined-rates/electricity-predefined-rates.component';
+import { ElectricityPredefinedRatesComponent } from './components/electricity-predefined-rates/electricity-predefined-rates.component';
 
 const routes: Routes = [
     {
