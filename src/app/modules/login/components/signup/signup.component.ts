@@ -1,41 +1,43 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../../infrastructure/auth/auth.service';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router'
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationResponse } from '../../domain/AuthenticationResponse';
-import { paths } from 'src/app/core/application/paths.routes';
+import { Subscription } from 'rxjs';
+import { AuthenticationResponse } from '../../interfaces/AuthenticationResponse';
+
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class SigninComponent implements OnInit, OnDestroy {
-
+export class SignupComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[];
-  public signInForm: FormGroup;
-  public submitted: boolean;
+  public signUpForm!: FormGroup;
+  public submitted!: boolean;
 
-  constructor(
+  constructor( 
       public authService: AuthService,
       private fb: FormBuilder,
+      private location: Location,
       private router: Router
     ) {
     this.subscriptions = [];
   }
 
   // convenience getter for easy access to form fields
-  get signInFormControls() { return this.signInForm.controls; }
+  get signUpFormControls() { return this.signUpForm.controls; }
 
   ngOnInit() {
-    this.signInForm = this.fb.group({
+    this.signUpForm = this.fb.group({
+        fullName: ['', Validators.required],
         email: ['', [
                       Validators.required, 
                       Validators.email,
                       Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')
                     ]
-              ],
+                ],
         password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -45,30 +47,29 @@ export class SigninComponent implements OnInit, OnDestroy {
       subscription.unsubscribe();
     });
   }
-
+  
   public onSubmit(): void {
     this.submitted = true;
 
      // stop here if form is invalid
-    if (this.signInForm.invalid) {
+    if (this.signUpForm.invalid) {
       return;
     }
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInForm.value));
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signUpForm.value));
 
     this.subscriptions.push(
-      this.authService.signIn(this.signInForm.value).subscribe((res: AuthenticationResponse) => {
+      this.authService.signUp(this.signUpForm.value).subscribe((res: AuthenticationResponse) => {
         sessionStorage.setItem('token', res.token);
         this.router.navigate(['']);
       })
     );
   }
 
-  public goToSignUp(): void {
-    this.router.navigate([paths.signup]);
+  public onCancel(): void {
+    this.location.back();
   }
 
-  public resetForm(signInForm: FormGroup): void {
-    signInForm.reset();
+  public resetForm(form: FormGroup): void {
+      form.reset();
   }
-
 }

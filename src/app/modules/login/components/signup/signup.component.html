@@ -8,11 +8,11 @@
                 <form [formGroup] = "signUpForm" (ngSubmit)="onSubmit()">
                     <div class="mb-3 row align-items-center search-row">
                         <div>
-                            <input type = "text" class = "b-input__element" formControlName = "username" placeholder = "Username"
-                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signUpFormControls['username'].errors }" />
-                            <div *ngIf="submitted && signUpFormControls['username'].errors" class="invalid-feedback">
-                                <div *ngIf="signUpFormControls['username'].errors['required']">
-                                    Username is required
+                            <input type = "text" class = "b-input__element" formControlName = "fullName" placeholder = "Full Name"
+                            class="form-control" [ngClass]="{ 'is-invalid': submitted && signUpFormControls['fullName'].errors }" />
+                            <div *ngIf="submitted && signUpFormControls['fullName'].errors" class="invalid-feedback">
+                                <div *ngIf="signUpFormControls['fullName'].errors['required']">
+                                    Full name is required
                                 </div>
                             </div>
                         </div>

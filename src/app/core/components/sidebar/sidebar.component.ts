@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "src/app/modules/login/infrastructure/auth/auth.service";
+import { AuthService } from "src/app/modules/login/auth/auth.service";
 
 @Component({
   selector: "sidebar-boots",

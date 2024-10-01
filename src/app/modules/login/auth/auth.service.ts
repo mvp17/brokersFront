@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { AuthenticationRequest } from '../../domain/AuthenticationRequest';
-import { RegisterRequest } from '../../domain/RegisterRequest';
-import { AuthenticationResponse } from '../../domain/AuthenticationResponse';
+import { AuthenticationRequest } from '../interfaces/AuthenticationRequest';
+import { RegisterRequest } from '../interfaces/RegisterRequest';
+import { AuthenticationResponse } from '../interfaces/AuthenticationResponse';
 import { Observable } from 'rxjs';
 
 
@@ -21,12 +21,12 @@ export class AuthService {
 
   public signUp(request: RegisterRequest): Observable<AuthenticationResponse> {
     sessionStorage.setItem('email', request.email);
-    return this.http.post<AuthenticationResponse>(this.URL + 'auth/register', request);
+    return this.http.post<AuthenticationResponse>(this.URL + 'auth/signup', request);
   }
 
   public signIn(request: AuthenticationRequest): Observable<AuthenticationResponse> {
     sessionStorage.setItem('email', request.email);
-    return this.http.post<AuthenticationResponse>(this.URL + 'auth/authenticate', request);
+    return this.http.post<AuthenticationResponse>(this.URL + 'auth/login', request);
   }
 
   public loggedIn(): boolean {
@@ -41,7 +41,7 @@ export class AuthService {
     if (confirm("Leaving already?")){
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('email');
-      this.router.navigate(['/signin']);
+      this.router.navigate(['/login/signin']);
     }
   }
 
