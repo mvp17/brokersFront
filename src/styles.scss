@@ -409,6 +409,11 @@ fieldset.scheduler-border {
             box-shadow:  0px 0px 0px 0px #000;
 }
 
+.accordion {
+    --bs-accordion-active-bg: green !important;
+    --bs-primary-text-emphasis: white !important;
+  }
+
 legend.scheduler-border {
     font-size: 1.2em !important;
     font-weight: bold !important;
@@ -417,11 +422,6 @@ legend.scheduler-border {
     padding:0 10px; /* To give a bit of padding on the left and right */ 
     border-bottom:none;
 
-}
-
-.modal-segundo-plano{
-    z-index: 0;
-    position: absolute;
 }
 
 .global-navigation-topbar, .global-navigation-topbar-title, .global-navigation-topbar-user-parent, .global-navigation-topbar-burguer, .button-burger, .global-navigation-topbar-logo{

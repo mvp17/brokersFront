@@ -49,6 +49,8 @@
     </ngb-panel>
 </ngb-accordion>
 
+<br>
+
 <ngb-accordion [closeOthers]="false" activeIds="supplyData">
     <ngb-panel id="supplyData" title="Supply Data">
         <ng-template ngbPanelContent>
@@ -270,6 +272,8 @@
         </ng-template>
     </ngb-panel>
 </ngb-accordion>
+
+<br>
 
 <div class="row">
     <div class="col-md-6">
@@ -602,3 +606,130 @@
         </ngb-accordion>
     </div>
 </div>
+
+<br>
+
+<ngb-accordion [closeOthers]="false" activeIds="savingsCostsPanel">
+  <ngb-panel id="savingsCostsPanel" title="Savings and Costs">
+      <ng-template ngbPanelContent>
+          <div class="row">
+              <!-- First Column -->
+              <div class="col-md-4">
+                  <!-- First row: Annual savings -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="annualSavings" class="col-form-label col-md-6">Annual Savings:</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="annualSavings"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="annualSavings"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+                  <!-- Second row: Monthly savings -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="monthlySavings" class="col-form-label col-md-6">Monthly Savings:</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="monthlySavings"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="monthlySavings"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+                  <!-- Third row: % savings -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="percentageSavings" class="col-form-label col-md-6">% Savings:</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="percentageSavings"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="percentageSavings"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Second Column -->
+              <div class="col-md-4">
+                  <!-- First row: Annual cost client -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="annualCostClient" class="col-form-label col-md-6">Annual Cost (Client):</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="annualCostClient"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="annualCostClient"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+                  <!-- Second row: Monthly cost -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="monthlyCostClient" class="col-form-label col-md-6">Monthly Cost:</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="monthlyCostClient"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="monthlyCostClient"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Third Column -->
+              <div class="col-md-4">
+                  <!-- First row: Annual cost EN -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="annualCostEN" class="col-form-label col-md-6">Annual Cost (EN):</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="annualCostEN"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="annualCostEN"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+                  <!-- Second row: Monthly cost EN -->
+                  <div class="row mb-3 align-items-center">
+                      <label for="monthlyCostEN" class="col-form-label col-md-6">Monthly Cost (EN):</label>
+                      <div class="col-md-6">
+                          <input type="text"
+                                 id="monthlyCostEN"
+                                 class="form-control text-end"
+                                 placeholder="0,00"
+                                 [(ngModel)]="monthlyCostEN"
+                                 (input)="onInputChange($event)"
+                                 (keypress)="onKeyPress($event)">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+<br>
+
+<div class="row">
+    <div class="col-md-2">
+        <button class="btn btn-success" (click)="printComparative()">Print comparative</button>
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-success" (click)="generateContract()">Generate contract</button>
+    </div>
+</div>
+
+<br>

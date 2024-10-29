@@ -25,9 +25,24 @@ export class ElectricityComparativeAnalysisComponent {
 	agencyRateOptions: string[];
 	predefinedRate: string;
 	predefinedRateOptions: string[];
+	annualSavings: string;
+	monthlySavings: string;
+	percentageSavings: string;
+	annualCostClient: string;
+	monthlyCostClient: string;
+	annualCostEN: string;
+	monthlyCostEN: string;
 
   	constructor() {
 		this.rate = '';
+		this.annualSavings = '';
+		this.monthlySavings = '';
+		this.percentageSavings = '';
+		this.annualCostClient = '';
+		this.monthlyCostClient = '';
+		this.annualCostClient = '';
+		this.annualCostEN = '';
+		this.monthlyCostEN = '';
 		this.predefinedRate = '';
 		this.agencyRate = '';
 		this.predefinedRateOptions = ['rate 1', 'rate 2']
@@ -100,5 +115,13 @@ export class ElectricityComparativeAnalysisComponent {
 
 	selectPredefinedRateOption(predefinedRate: string): void {
 		this.predefinedRate = predefinedRate;
+	}
+
+	printComparative(): void {
+
+	}
+
+	generateContract(): void {
+		
 	}
 }
