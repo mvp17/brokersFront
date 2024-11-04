@@ -4,221 +4,633 @@
   </div>
   <div class="modal-body">
     <div class="row align-items-center">
-        <div class="col-md-1">
-            <label for="rateDropdown">Rate:</label>
-        </div>
-        <div class="col-md-3">
-            <div ngbDropdown class="d-inline-block w-100">
-                <button
-                  class="btn btn-outline-success dropdown-toggle w-100"
-                  id="rateDropdown"
-                  ngbDropdownToggle
-                  type="button"
-                >
-                  {{ rate || 'Select an option' }}
-                </button>
-                <div ngbDropdownMenu class="w-100">
-                  <button
-                    *ngFor="let rateOption of rateOptions"
-                    class="dropdown-item"
-                    (click)="selectRateOption(rateOption)"
-                  >
-                    {{ rateOption }}
-                  </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="row align-items-center" *ngIf="showType">
-        <div class="col-md-1">
-            <label for="typeDropdown">Type:</label>
-        </div>
-        <div class="col-md-3">
-            <div ngbDropdown class="d-inline-block w-100">
-                <button
-                  class="btn btn-outline-success dropdown-toggle w-100"
-                  id="typeDropdown"
-                  ngbDropdownToggle
-                  type="button"
-                >
-                  {{ type || 'Select an option' }}
-                </button>
-                <div ngbDropdownMenu class="w-100">
-                  <button
-                    *ngFor="let productTypeOption of productTypeOptions"
-                    class="dropdown-item"
-                    (click)="selectTypeOption(productTypeOption)"
-                  >
-                    {{ productTypeOption }}
-                  </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="row align-items-center" *ngIf="showType2td">
-        <div class="col-md-1">
-            <label for="type2tdDropdown">Type 2td:</label>
-        </div>
-        <div class="col-md-3">
-            <div ngbDropdown class="d-inline-block w-100">
-                <button
-                  class="btn btn-outline-success dropdown-toggle w-100"
-                  id="type2tdDropdown"
-                  ngbDropdownToggle
-                  type="button"
-                >
-                  {{ type2td || 'Select an option' }}
-                </button>
-                <div ngbDropdownMenu class="w-100">
-                  <button
-                    *ngFor="let type2tdOption of type2tdOptions"
-                    class="dropdown-item"
-                    (click)="selectType2tdOption(type2tdOption)"
-                  >
-                    {{ type2tdOption }}
-                  </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="row align-items-center" *ngIf="showBasePriceGrid">
-        <!--Cons-->
-        <div class="row mb-3">
-          <div class="col-md-2"></div> <!-- Empty column for alignment -->
-          <div class="col-md-10">
-            <div class="row text-center">
-              <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
-                <label for="consInput{{i-1}}" class="form-label">P{{i}}</label>
-              </div>
-            </div>
+      <div class="col-md-1">
+        <label for="rateDropdown">Rate:</label>
+      </div>
+      <div class="col-md-3">
+        <div ngbDropdown class="d-inline-block w-100">
+          <button
+            class="btn btn-outline-success dropdown-toggle w-100"
+            id="rateDropdown"
+            ngbDropdownToggle
+            type="button"
+          >
+            {{ rate || "Select an option" }}
+          </button>
+          <div ngbDropdownMenu class="w-100">
+            <button
+              *ngFor="let rateOption of rateOptions"
+              class="dropdown-item"
+              (click)="selectRateOption(rateOption)"
+            >
+              {{ rateOption }}
+            </button>
           </div>
         </div>
-
-        <div class="row mb-3">
-        <label for="consLabel" class="col-form-label col-md-2">Cons</label>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-2">
-                      <input type="text" 
-                              class="form-control text-end" 
-                              placeholder="0,00" 
-                              [value]="formatDisplayValue(cons[0])"
-                              [(ngModel)]="cons[0]"
-                              (input)="onInputChange($event)" 
-                              (keypress)="onKeyPress($event)"
-                              />
-                    </div>
-                    <div class="col-md-2">
-                      <input type="text" 
-                              class="form-control text-end" 
-                              placeholder="0,00" 
-                              [value]="formatDisplayValue(cons[1])"
-                              [(ngModel)]="cons[1]"
-                              (input)="onInputChange($event)" />
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" 
-                                class="form-control text-end" 
-                                placeholder="0,00" 
-                                [value]="formatDisplayValue(cons[2])"
-                                [(ngModel)]="cons[2]"
-                                (input)="onInputChange($event)" />
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" 
-                                class="form-control text-end" 
-                                placeholder="0,00" 
-                                [value]="formatDisplayValue(cons[3])"
-                                [(ngModel)]="cons[3]"
-                                (input)="onInputChange($event)" />
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" 
-                                class="form-control text-end" 
-                                placeholder="0,00" 
-                                [value]="formatDisplayValue(cons[4])"
-                                [(ngModel)]="cons[4]"
-                                (input)="onInputChange($event)" />
-                    </div>
-                    <div class="col-md-2">
-                        <input type="text" 
-                                class="form-control text-end" 
-                                placeholder="0,00" 
-                                [value]="formatDisplayValue(cons[5])"
-                                [(ngModel)]="cons[5]"
-                                (input)="onInputChange($event)" />
-                    </div>
-                  </div>
-            </div>
+      </div>
+      <div class="col-md-2" *ngIf="this.rate === '3.0TD'">
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            id="flexCheckDefault"
+            [(ngModel)]="greenPower"
+            (change)="onGreenPowerCheckboxChange()"
+          >
+          <label class="form-check-label" for="flexCheckDefault">
+            Green power
+          </label>
         </div>
-        <!--Pot-->
-        <div class="row mb-3">
-            <label for="potLabel" class="col-form-label col-md-2">Pot</label>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-2">
-                        <input type="text" 
-                                class="form-control text-end" 
-                                placeholder="0,00" 
-                                [value]="formatDisplayValue(pots[0])"
-                                [(ngModel)]="pots[0]"
-                                (input)="onInputChange($event)" 
-                                (keypress)="onKeyPress($event)"
-                                />
-                      </div>
-                      <div class="col-md-2">
-                        <input type="text" 
-                                class="form-control text-end"  
-                                placeholder="0,00" 
-                                [value]="formatDisplayValue(pots[1])"
-                                [(ngModel)]="pots[1]"
-                                (input)="onInputChange($event)" />
-                      </div>
-                      <div class="col-md-2">
-                          <input type="text" 
-                                  class="form-control text-end" 
-                                  placeholder="0,00" 
-                                  [value]="formatDisplayValue(pots[2])"
-                                  [(ngModel)]="pots[2]"
-                                  (input)="onInputChange($event)" />
-                      </div>
-                      <div class="col-md-2">
-                          <input type="text" 
-                                  class="form-control text-end" 
-                                  placeholder="0,00" 
-                                  [value]="formatDisplayValue(pots[3])"
-                                  [(ngModel)]="pots[3]"
-                                  (input)="onInputChange($event)" />
-                      </div>
-                      <div class="col-md-2">
-                          <input type="text" 
-                                  class="form-control text-end" 
-                                  placeholder="0,00" 
-                                  [value]="formatDisplayValue(pots[4])"
-                                  [(ngModel)]="pots[4]"
-                                  (input)="onInputChange($event)" />
-                      </div>
-                      <div class="col-md-2">
-                          <input type="text" 
-                                  class="form-control text-end" 
-                                  placeholder="0,00" 
-                                  [value]="formatDisplayValue(pots[5])"
-                                  [(ngModel)]="pots[5]"
-                                  (input)="onInputChange($event)" />
-                      </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <br />
+
+    <div class="row align-items-center" *ngIf="showType">
+      <div class="col-md-1">
+        <label for="typeDropdown">Type:</label>
+      </div>
+      <div class="col-md-3">
+        <div ngbDropdown class="d-inline-block w-100">
+          <button
+            class="btn btn-outline-success dropdown-toggle w-100"
+            id="typeDropdown"
+            ngbDropdownToggle
+            type="button"
+          >
+            {{ type || "Select an option" }}
+          </button>
+          <div ngbDropdownMenu class="w-100">
+            <button
+              *ngFor="let productTypeOption of productTypeOptions"
+              class="dropdown-item"
+              (click)="selectTypeOption(productTypeOption)"
+            >
+              {{ productTypeOption }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row align-items-center" *ngIf="showType2td">
+      <div class="col-md-1">
+        <label for="type2tdDropdown">Type 2td:</label>
+      </div>
+      <div class="col-md-3">
+        <div ngbDropdown class="d-inline-block w-100">
+          <button
+            class="btn btn-outline-success dropdown-toggle w-100"
+            id="type2tdDropdown"
+            ngbDropdownToggle
+            type="button"
+          >
+            {{ type2td || "Select an option" }}
+          </button>
+          <div ngbDropdownMenu class="w-100">
+            <button
+              *ngFor="let type2tdOption of type2tdOptions"
+              class="dropdown-item"
+              (click)="selectType2tdOption(type2tdOption)"
+            >
+              {{ type2tdOption }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <table class="table table-bordered" *ngIf="showBasePriceGrid">
+      <!-- Header -->
+      <thead>
+        <tr class="text-center">
+          <th></th>
+          <!-- Empty header cell for alignment -->
+          <th>P1</th>
+          <th>P2</th>
+          <th>P3</th>
+          <th>P4</th>
+          <th>P5</th>
+          <th>P6</th>
+        </tr>
+      </thead>
+
+      <!-- Body -->
+      <tbody>
+        <!-- Cons -->
+        <tr>
+          <td><label for="consLabel" class="col-form-label">Cons</label></td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="cons[0]"
+              [value]="formatDisplayValue(cons[0])"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="cons[1]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="cons[2]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="cons[3]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="cons[4]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="cons[5]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+        </tr>
+
+        <!-- Pot -->
+        <tr>
+          <td><label for="potLabel" class="col-form-label">Pot</label></td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="pots[0]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="pots[1]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="pots[2]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="pots[3]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="pots[4]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="pots[5]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+        </tr>
+
+        <!-- PreBaPot -->
+        <tr>
+          <td>
+            <label for="preBaPotLabel" class="col-form-label">PreBaPot</label>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaPots[0]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaPots[1]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaPots[2]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaPots[3]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaPots[4]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaPots[5]"
+              disabled="true"
+            />
+          </td>
+        </tr>
+
+        <!-- MarPot -->
+        <tr>
+          <td>
+            <label for="MarPotLabel" class="col-form-label">MarPot</label>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marPots[0]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marPots[1]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marPots[2]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marPots[3]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marPots[4]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marPots[5]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+        </tr>
+
+        <!-- PreFiPot -->
+        <tr>
+          <td>
+            <label for="PreFiPotLabel" class="col-form-label">PreFiPot</label>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiPots[0]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiPots[1]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiPots[2]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiPots[3]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiPots[4]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiPots[5]"
+              disabled="true"
+            />
+          </td>
+        </tr>
+
+        <!-- PreBaEne -->
+        <tr>
+          <td>
+            <label for="PreBaEneLabel" class="col-form-label">PreBaEne</label>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaEnes[0]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaEnes[1]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaEnes[2]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaEnes[3]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaEnes[4]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preBaEnes[5]"
+              disabled="true"
+            />
+          </td>
+        </tr>
+
+        <!-- MarEne -->
+        <tr>
+          <td>
+            <label for="MarEneLabel" class="col-form-label">MarEne</label>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marEnes[0]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marEnes[1]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marEnes[2]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marEnes[3]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marEnes[4]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="marEnes[5]"
+              (input)="onInputChange($event)"
+              (keypress)="onKeyPress($event)"
+            />
+          </td>
+        </tr>
+
+        <!-- PreFiEne -->
+        <tr>
+          <td>
+            <label for="PreFiEneLabel" class="col-form-label">PreFiEne</label>
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiEnes[0]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiEnes[1]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiEnes[2]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiEnes[3]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiEnes[4]"
+              disabled="true"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control text-end"
+              placeholder="0,00"
+              [(ngModel)]="preFiEnes[5]"
+              disabled="true"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  </div>
+</div>
 
 <div *ngIf="readCurrentRateOrigin">
   <div class="modal-header">
@@ -226,93 +638,184 @@
   </div>
   <div class="modal-body">
     <div class="row mb-3">
-        <div class="col-md-3 me-2"> <!-- Adjust column size as needed -->
-            <input type="text" class="form-control" placeholder="Rate" [(ngModel)]="detailDataService.rate" disabled/>
-        </div>
-        <div class="col-md-3 me-2"> <!-- Adjust column size as needed -->
-            <input type="text" class="form-control" placeholder="Type" [(ngModel)]="detailDataService.productType" disabled/>
-        </div>
-        <div class="col-md-3"> <!-- Adjust column size as needed -->
-            <input type="text" class="form-control" placeholder="Type 2" [(ngModel)]="detailDataService.type2td" disabled/>
-        </div>
+      <div class="col-md-3 me-2">
+        <!-- Adjust column size as needed -->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Rate"
+          [(ngModel)]="rate"
+          disabled
+        />
+      </div>
+      <div class="col-md-3 me-2">
+        <!-- Adjust column size as needed -->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Type"
+          [(ngModel)]="type"
+          disabled
+        />
+      </div>
+      <div class="col-md-3">
+        <!-- Adjust column size as needed -->
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Type 2"
+          [(ngModel)]="type2td"
+          disabled
+        />
+      </div>
     </div>
     <div class="row mb-3">
-      <div class="col-md-2"></div> <!-- Empty column for alignment -->
+      <div class="col-md-2"></div>
+      <!-- Empty column for alignment -->
       <div class="col-md-10">
         <div class="row text-center">
           <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
-            <label class="form-label">P{{i}}</label>
+            <label class="form-label">P{{ i }}</label>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row mb-3">
-      <label class="col-form-label col-md-2">Cons Fees</label>
-        <div class="col-md-10">
-            <div class="row">
-                <div class="col-md-2">
-                  <input type="text" class="form-control text-end" [(ngModel)]="detailDataService.consFees[0]" disabled/>
-                </div>
-                <div class="col-md-2">
-                  <input type="text" 
-                         class="form-control text-end" [(ngModel)]="detailDataService.consFees[1]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.consFees[2]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.consFees[3]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.consFees[4]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.consFees[5]" disabled/>
-                </div>
-              </div>
+      <label class="col-form-label col-md-2">Pot Fees</label>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marPots[0]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marPots[1]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marPots[2]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marPots[3]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marPots[4]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marPots[5]"
+              disabled
+            />
+          </div>
         </div>
+      </div>
     </div>
     <div class="row mb-3">
-      <label class="col-form-label col-md-2">Pot Fees</label>
-        <div class="col-md-10">
-            <div class="row">
-                <div class="col-md-2">
-                  <input type="text" class="form-control text-end" [(ngModel)]="detailDataService.potFees[0]" disabled/>
-                </div>
-                <div class="col-md-2">
-                  <input type="text" 
-                         class="form-control text-end" [(ngModel)]="detailDataService.potFees[1]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.potFees[2]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.potFees[3]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.potFees[4]" disabled/>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" 
-                           class="form-control text-end" [(ngModel)]="detailDataService.potFees[5]" disabled/>
-                </div>
-              </div>
+      <label class="col-form-label col-md-2">Ene Fees</label>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marEnes[0]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marEnes[1]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marEnes[2]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marEnes[3]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marEnes[4]"
+              disabled
+            />
+          </div>
+          <div class="col-md-2">
+            <input
+              type="text"
+              class="form-control text-end"
+              [(ngModel)]="marEnes[5]"
+              disabled
+            />
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
 
-
 <div class="modal-footer justify-content-end">
-  <input type="text" class="form-control me-2" *ngIf="createNewRateOrigin" style="max-width: 300px;" placeholder="Rate name" [(ngModel)]="rateName" />
-  <button type="button" class="btn btn-success me-2" *ngIf="createNewRateOrigin" (click)="saveNewRate()">Save</button>
-  <button type="button" class="btn btn-outline-success" (click)="activeModal.close('Close click')">Close</button>
+  <input
+    type="text"
+    class="form-control me-2"
+    *ngIf="createNewRateOrigin"
+    style="max-width: 300px"
+    placeholder="Rate name"
+    [(ngModel)]="rateName"
+  />
+  <button
+    type="button"
+    class="btn btn-success me-2"
+    *ngIf="createNewRateOrigin"
+    (click)="saveNewRate()"
+  >
+    Save
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-success"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
 </div>
