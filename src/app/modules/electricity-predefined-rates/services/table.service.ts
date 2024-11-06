@@ -8,14 +8,12 @@ import { ElectricityPredefinedRatesResultDataTable } from '../interfaces/electri
 export class TableService {
 
   public results: ElectricityPredefinedRatesResultDataTable[];
-  public totalRecords: number;
   public pageNumber: number;
   public pageResults: number;
   public orderBy: string;
 
   constructor() {
     this.results = [];
-    this.totalRecords = 0;
     this.pageNumber = 0;
     this.pageResults = 0;
     this.orderBy = '';

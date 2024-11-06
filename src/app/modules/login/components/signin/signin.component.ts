@@ -52,8 +52,6 @@ export class SigninComponent implements OnInit, OnDestroy {
     if (this.signInForm.invalid) {
       return;
     }
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInForm.value));
-
     this.subscriptions.push(
       this.authService.signIn(this.signInForm.value).subscribe((res: AuthenticationResponse) => {
         sessionStorage.setItem('token', res.token);

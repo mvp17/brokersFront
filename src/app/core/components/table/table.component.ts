@@ -3,7 +3,7 @@ import { faFileExcel } from '@fortawesome/free-regular-svg-icons';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faArrowsUpDown } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'table-boots',
@@ -42,6 +42,7 @@ export class TableComponent implements OnInit {
   arrowDown = faArrowDown;
   arrowsUpDown = faArrowsUpDown;
   eye = faEye;
+  trash = faTrash;
 
   constructor() {
     this.collectionSize = 0;

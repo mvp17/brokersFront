@@ -25,9 +25,14 @@ export class ElectricityPredefinedRatesComponent implements OnInit, OnDestroy {
   renderTable: boolean;
   buttonsAction = [
     {
-      action: 'detalle',
+      action: 'detail',
       subMenu: [],
       matTooltip: 'Detail',
+    },
+    {
+      action: 'delete',
+      subMenu: [],
+      matTooltip: 'Delete',
     },
   ];
   
@@ -95,7 +100,7 @@ export class ElectricityPredefinedRatesComponent implements OnInit, OnDestroy {
       this.records.push(record);
     }
 
-    this.collectionSize = this.tableService.totalRecords;
+    this.collectionSize = this.records.length;
     this.renderTable = true;
   } 
 
@@ -106,22 +111,33 @@ export class ElectricityPredefinedRatesComponent implements OnInit, OnDestroy {
   onSort(evento: TableColumn): void { }
 
   buttonsEvents(evento: any): void {
+    let currentRateId, modalRef;
     switch (evento[2]) {
       case 'excel':
         this.handleButtonExportExcelFileClick();
         break;
-      case 'detalle':
-        const currentRateId = evento[1][0];
-        console.log(currentRateId)        
-        const modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
+      case 'detail':
+        currentRateId = evento[1][0];
+        this.apiService.currentPredefinedRateId = currentRateId;
+        modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
         modalRef.componentInstance.readCurrentRateOrigin = true;
+        break;
+      
+      case 'delete':
+        currentRateId = evento[1][0];
+        this.apiService.currentPredefinedRateId = currentRateId;
+        modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
+        modalRef.componentInstance.readCurrentRateOrigin = true;
+        modalRef.closed.subscribe(() => {
+          this.getPredefinedRates();
+        })
         break;
       default:
         break;
     }
   }
 
-  showCreateNewPredefinedRate(): void {
+  showCreateNewPredefinedRateModal(): void {
     const modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
     modalRef.componentInstance.createNewRateOrigin = true;
     modalRef.closed.subscribe(() => {

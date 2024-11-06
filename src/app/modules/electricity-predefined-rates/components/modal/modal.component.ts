@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { predefinedRatesApiService } from '../../services/api.service';
@@ -13,9 +13,10 @@ import { IGetElectricityPredefinedRates } from '../../interfaces/get-electricity
   styleUrls: ['./modal.component.scss'],
   imports: [CommonModule, NgbModule, FormsModule],
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit{
   @Input() createNewRateOrigin: boolean;
   @Input() readCurrentRateOrigin: boolean;
+  @Input() deleteCurrentRateOrigin: boolean;
 
   showType2td: boolean;
   showType: boolean;
@@ -57,6 +58,7 @@ export class ModalComponent {
     this.preFiEnes = ['', '', '', '', '', ''];
 
     this.readCurrentRateOrigin = false;
+    this.deleteCurrentRateOrigin = false;
     this.showType2td = false;
     this.showType = false;
     this.showBasePriceGrid = false;
@@ -68,6 +70,37 @@ export class ModalComponent {
     this.type = '';
     this.type2td = '';
     this.greenPower = false;
+  }
+
+  ngOnInit(): void {
+    if (this.readCurrentRateOrigin || this.deleteCurrentRateOrigin) {
+      this.apiService.getPredefinedRate().subscribe((predefinedRate: IGetElectricityPredefinedRates) => {
+        this.rate = predefinedRate.rate;
+        this.type = predefinedRate.type;
+        if (this.rate === '2.0TD') {
+          this.type2td = predefinedRate.singlePrice ? '24h' : 'Trio';
+        }
+        else {
+          this.greenPower = predefinedRate.greenPower;
+        }
+        this.marPots = [
+          this.formatDisplayValue(String(predefinedRate.marPotP1)), 
+          this.formatDisplayValue(String(predefinedRate.marPotP2)), 
+          this.formatDisplayValue(String(predefinedRate.marPotP3)),
+          this.formatDisplayValue(String(predefinedRate.marPotP4)), 
+          this.formatDisplayValue(String(predefinedRate.marPotP5)),
+          this.formatDisplayValue(String(predefinedRate.marPotP6)),
+        ];
+        this.marEnes = [
+          this.formatDisplayValue(String(predefinedRate.marEneP1)), 
+          this.formatDisplayValue(String(predefinedRate.marEneP2)), 
+          this.formatDisplayValue(String(predefinedRate.marEneP3)),
+          this.formatDisplayValue(String(predefinedRate.marEneP4)), 
+          this.formatDisplayValue(String(predefinedRate.marEneP5)), 
+          this.formatDisplayValue(String(predefinedRate.marEneP6)),
+        ]
+      })
+    }
   }
 
   selectTypeOption(option: string) {
@@ -114,15 +147,25 @@ export class ModalComponent {
       marEneP5: Number(this.formatInternalValue(this.marEnes[4])),
       marEneP6: Number(this.formatInternalValue(this.marEnes[5]))
     };
+    
     this.apiService
       .createNewPredefinedRate(newPredefinedRate)
-      .subscribe((newPredefinedRateCreated: IGetElectricityPredefinedRates) => {
-        console.log(newPredefinedRateCreated);
+      .subscribe(() => {
         this.activeModal.close(true);
       });
+    
   }
 
   onGreenPowerCheckboxChange(): void {}
+
+  deletePredefinedRate(): void {
+    // TODO: Backend delete predef rate.
+    this.apiService.deleteCurrentPredefinedRate().subscribe(() => {
+      this.activeModal.close(true);
+    });
+  }
+
+  /* INPUT DECIMAL VALUE  FORMATTING*/
 
   // Converts dot to comma for display (not strictly necessary with ngModel)
   formatDisplayValue(value: string): string {
@@ -172,7 +215,7 @@ export class ModalComponent {
       'Delete',
       'Tab',
       'Enter',
-      ',',
+      ','
     ];
     if (!/\d/.test(event.key) && !allowedKeys.includes(event.key)) {
       event.preventDefault();

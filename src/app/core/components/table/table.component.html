@@ -36,8 +36,11 @@
                     </td>
                     <td *ngIf="buttonsAction.length != 0" [style]="buttonsAction.length == 1 ? 'width: 40px;' : 'width: 100px'">
                         <div *ngFor="let button of buttonsAction" class="btn-group" dropdown>
-                            <button class="btn btn-primary" style="font-size: 14px;" (click)="buttonEvent(i, record, button.action)" [matTooltip]="button.matTooltip">
+                            <button class="btn btn-primary" *ngIf="button.action === 'detail'" style="font-size: 14px;" (click)="buttonEvent(i, record, button.action)" [matTooltip]="button.matTooltip">
                                 <fa-icon [icon]="eye"></fa-icon>
+                            </button>
+                            <button class="btn btn-danger" *ngIf="button.action === 'delete'" style="font-size: 14px;" (click)="buttonEvent(i, record, button.action)" [matTooltip]="button.matTooltip">
+                                <fa-icon [icon]="trash"></fa-icon>
                             </button>
                         </div>
                     </td>
