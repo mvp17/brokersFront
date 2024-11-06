@@ -4,6 +4,8 @@
       (toggleSidebar)="sidebarExpanded = !sidebarExpanded">
     </sidebar-boots>
     <div class="main-content" [ngClass]="{ 'expanded': sidebarExpanded }">
+      <app-header></app-header>
+      <br>
       <router-outlet></router-outlet>
     </div>
   </div>

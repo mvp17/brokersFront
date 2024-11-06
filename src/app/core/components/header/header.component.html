@@ -1,0 +1,41 @@
+<header class="app-header">
+  <div class="brokers" *ngIf="this.authService.loggedIn()">
+    <button (click)="toggleBrokersDropdown()" class="brokers-button">
+      Brokers ▼
+    </button>
+
+    <!-- Brokers Dropdown Content -->
+    <div *ngIf="brokersDropdownOpen" class="brokers-dropdown">
+      <input
+        type="text"
+        placeholder="Search brokers..."
+        [(ngModel)]="searchText"
+        (input)="filterBrokers()"
+        class="search-input"
+      />
+
+      <div class="dropdown-list">
+        <div
+          *ngFor="let broker of filteredBrokers"
+          class="dropdown-item"
+          (click)="selectBroker(broker)"
+        >
+          {{ broker.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile dropdown menu -->
+  <div class="profile-menu" *ngIf="this.authService.loggedIn()">
+    <button (click)="toggleProfileDropdown()" class="profile-icon">
+      Profile ▼
+    </button>
+
+    <!-- Profile Dropdown Content -->
+    <div *ngIf="profileDropdownOpen" class="dropdown-content">
+      <a routerLink="/profile">Profile</a>
+      <a style="cursor: pointer" (click)="logout()">Log out</a>
+    </div>
+  </div>
+</header>

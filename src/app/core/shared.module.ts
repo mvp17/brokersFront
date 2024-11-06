@@ -8,12 +8,14 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TableComponent } from './components/table/table.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    TableComponent
+    TableComponent,
+    HeaderComponent
   ],
   imports: [
     RouterModule,
@@ -28,7 +30,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   exports: [
     RouterModule,
     SidebarComponent,
-    TableComponent
+    TableComponent,
+    HeaderComponent
   ],
   providers: [
     SidebarComponent,

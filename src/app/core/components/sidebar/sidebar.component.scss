@@ -1,11 +1,12 @@
-// Sidebar styling
+@import '../../../styles/variables.scss';
+
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   width: 60px; // Default width of the sidebar
-  background: green;
+  background: $frame-background-color;
   color: white;
   transition: width 0.3s ease;
   z-index: 100; // Ensure it's below the main content
@@ -24,7 +25,7 @@
 
   .header, .footer {
     padding: 10px;
-    background: green;
+    background: $frame-background-color;;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,7 +98,7 @@
         transition: background 0.3s, color 0.3s;
 
         &:hover {
-          background: green;
+          background: $frame-background-color;
 
           .title {
             color: white;
@@ -142,7 +143,7 @@
         top: 50%; // Vertically center the flyout
         left: 100%; // Position it to the right of the sidebar
         transform: translateY(-50%); // Center align the dropdown to the clicked item
-        background: green;
+        background: $frame-background-color;
         padding: 10px;
         min-width: 150px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -169,7 +170,7 @@
             transition: background 0.3s;
 
             &:hover {
-              background: darkgreen;
+              background: green;
 
               .title {
                 color: white;
@@ -177,7 +178,7 @@
             }
 
             &.active {
-              background: darkgreen;
+              background: green;
 
               .title {
                 color: white;
