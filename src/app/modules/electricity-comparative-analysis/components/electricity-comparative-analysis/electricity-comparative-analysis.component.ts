@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./electricity-comparative-analysis.component.scss']
 })
 export class ElectricityComparativeAnalysisComponent {
-
 	rate: string;
 	rateOptions: string[];
   	showType2td: boolean;
@@ -32,6 +31,8 @@ export class ElectricityComparativeAnalysisComponent {
 	monthlyCostClient: string;
 	annualCostEN: string;
 	monthlyCostEN: string;
+	isAgencyRatesDropdown: boolean = false;
+	isPredefinedRatesDropdown: boolean = false;
 
   	constructor() {
 		this.rate = '';
@@ -86,10 +87,19 @@ export class ElectricityComparativeAnalysisComponent {
 
 	selectAgencyRateOption(agencyRate: string) : void {
 		this.agencyRate = agencyRate;
+		this.isPredefinedRatesDropdown = true;
 	}
 
 	selectPredefinedRateOption(predefinedRate: string): void {
 		this.predefinedRate = predefinedRate;
+		this.isAgencyRatesDropdown = true;
+	}
+
+	resetPriceSelection() {
+		this.agencyRate = '';
+		this.predefinedRate = '';
+		this.isAgencyRatesDropdown = false;
+		this.isPredefinedRatesDropdown = false;
 	}
 
 	printComparative(): void {

@@ -113,7 +113,7 @@
         <div class="row mb-3">
           <div class="col-md-1"></div>
           <!-- Empty column for alignment -->
-          <div class="col-md-10">
+          <div class="col-md-6">
             <div class="row text-center">
               <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
                 <label for="consInput{{ i - 1 }}" class="form-label"
@@ -125,8 +125,8 @@
         </div>
 
         <div class="row mb-3">
-          <label for="consLabel" class="col-form-label col-md-1">Cons</label>
-          <div class="col-md-10">
+          <label for="consLabel" class="col-form-label col-md-1">Consumption</label>
+          <div class="col-md-6">
             <div class="row">
               <div class="col-md-2">
                 <app-formatted-decimal-input
@@ -163,8 +163,8 @@
         </div>
         <!--Pot-->
         <div class="row mb-3">
-          <label for="potLabel" class="col-form-label col-md-1">Pot</label>
-          <div class="col-md-10">
+          <label for="potLabel" class="col-form-label col-md-1">Power</label>
+          <div class="col-md-6">
             <div class="row">
               <div class="col-md-2">
                 <app-formatted-decimal-input
@@ -278,6 +278,7 @@
                   id="agencyRatesDropdown"
                   ngbDropdownToggle
                   type="button"
+                  [disabled]="isAgencyRatesDropdown"
                 >
                   {{ agencyRate || "Select an option" }}
                 </button>
@@ -291,6 +292,9 @@
                   </button>
                 </div>
               </div>
+            </div>
+            <div class="col-md-2" *ngIf="agencyRate || predefinedRate">
+              <button class="btn btn-outline-success" (click)="resetPriceSelection()">X</button>
             </div>
           </div>
 
@@ -307,6 +311,7 @@
                   id="predefinedRatesDropdown"
                   ngbDropdownToggle
                   type="button"
+                  [disabled]="isPredefinedRatesDropdown"
                 >
                   {{ predefinedRate || "Select an option" }}
                 </button>
@@ -342,7 +347,7 @@
             </div>
 
             <div class="row mb-3">
-              <label class="col-form-label col-md-2">EN prices ene</label>
+              <label class="col-form-label col-md-2">Energy</label>
               <div class="col-md-10">
                 <div class="row">
                   <div class="col-md-2">
@@ -380,7 +385,7 @@
             </div>
             <div class="row mb-3">
               <label for="potLabel" class="col-form-label col-md-2"
-                >EN prices pot</label
+                >Power</label
               >
               <div class="col-md-10">
                 <div class="row">
@@ -429,7 +434,7 @@
         <ng-template ngbPanelContent>
           <div class="row align-items-center">
             <div class="row mb-3">
-              <div class="col-md-1"></div>
+              <div class="col-md-2"></div>
               <!-- Empty column for alignment -->
               <div class="col-md-10">
                 <div class="row text-center">
@@ -441,7 +446,7 @@
             </div>
 
             <div class="row mb-3">
-              <label for="consLabel" class="col-form-label col-md-1">Ene</label>
+              <label for="consLabel" class="col-form-label col-md-2">Energy</label>
               <div class="col-md-10">
                 <div class="row">
                   <div class="col-md-2">
@@ -478,7 +483,7 @@
               </div>
             </div>
             <div class="row mb-3">
-              <label for="potLabel" class="col-form-label col-md-1">Pot</label>
+              <label for="potLabel" class="col-form-label col-md-2">Power</label>
               <div class="col-md-10">
                 <div class="row">
                   <div class="col-md-2">
