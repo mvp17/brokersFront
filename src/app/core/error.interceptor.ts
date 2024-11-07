@@ -34,11 +34,18 @@ export class ErrorIntercept implements HttpInterceptor {
           this.router.navigate(['']);
         } else {
           // server-side error
-          errorMessage = `Server Error Status: ${error.status} \n Message: ${error.message}`;
           const modalRef = this.modalService.open(ModalComponent);
           modalRef.componentInstance.errorInterceptorOrigin = true;
-          modalRef.componentInstance.body = errorMessage;
-          this.router.navigate(['']);
+
+          if (error.status === 403) {
+            modalRef.componentInstance.body = 'Token expired!!'
+            this.router.navigate(['/login/signin']);
+          }
+          else {
+            errorMessage = `Server Error Status: ${error.status} \n Message: ${error.message}`;
+            modalRef.componentInstance.body = errorMessage;
+            this.router.navigate(['']);
+          } 
         }
         return throwError(() => new Error(errorMessage));
       })

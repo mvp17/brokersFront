@@ -5,13 +5,15 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { predefinedRatesApiService } from '../../services/api.service';
 import { IPostElectricityPredefinedRates } from '../../interfaces/post-electricity-predefined-rates';
 import { IGetElectricityPredefinedRates } from '../../interfaces/get-electricity-predefined-rates';
+import { formatDisplayValue, formatInternalValue } from 'src/app/core/functions/formatting-value';
+import { SharedModule } from "../../../../core/shared.module";
 
 @Component({
   selector: 'modal-boots',
   standalone: true,
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
-  imports: [CommonModule, NgbModule, FormsModule],
+  imports: [CommonModule, NgbModule, FormsModule, SharedModule],
 })
 export class ModalComponent implements OnInit{
   @Input() createNewRateOrigin: boolean;
@@ -84,20 +86,20 @@ export class ModalComponent implements OnInit{
           this.greenPower = predefinedRate.greenPower;
         }
         this.marPots = [
-          this.formatDisplayValue(String(predefinedRate.marPotP1)), 
-          this.formatDisplayValue(String(predefinedRate.marPotP2)), 
-          this.formatDisplayValue(String(predefinedRate.marPotP3)),
-          this.formatDisplayValue(String(predefinedRate.marPotP4)), 
-          this.formatDisplayValue(String(predefinedRate.marPotP5)),
-          this.formatDisplayValue(String(predefinedRate.marPotP6)),
+          formatDisplayValue(String(predefinedRate.marPotP1)), 
+          formatDisplayValue(String(predefinedRate.marPotP2)), 
+          formatDisplayValue(String(predefinedRate.marPotP3)),
+          formatDisplayValue(String(predefinedRate.marPotP4)), 
+          formatDisplayValue(String(predefinedRate.marPotP5)),
+          formatDisplayValue(String(predefinedRate.marPotP6)),
         ];
         this.marEnes = [
-          this.formatDisplayValue(String(predefinedRate.marEneP1)), 
-          this.formatDisplayValue(String(predefinedRate.marEneP2)), 
-          this.formatDisplayValue(String(predefinedRate.marEneP3)),
-          this.formatDisplayValue(String(predefinedRate.marEneP4)), 
-          this.formatDisplayValue(String(predefinedRate.marEneP5)), 
-          this.formatDisplayValue(String(predefinedRate.marEneP6)),
+          formatDisplayValue(String(predefinedRate.marEneP1)), 
+          formatDisplayValue(String(predefinedRate.marEneP2)), 
+          formatDisplayValue(String(predefinedRate.marEneP3)),
+          formatDisplayValue(String(predefinedRate.marEneP4)), 
+          formatDisplayValue(String(predefinedRate.marEneP5)), 
+          formatDisplayValue(String(predefinedRate.marEneP6)),
         ]
       })
     }
@@ -134,18 +136,18 @@ export class ModalComponent implements OnInit{
       greenPower: this.greenPower,
       rate: this.rate,
       type: this.type,
-      marPotP1: Number(this.formatInternalValue(this.marPots[0])),
-      marPotP2: Number(this.formatInternalValue(this.marPots[1])),
-      marPotP3: Number(this.formatInternalValue(this.marPots[2])),
-      marPotP4: Number(this.formatInternalValue(this.marPots[3])),
-      marPotP5: Number(this.formatInternalValue(this.marPots[4])),
-      marPotP6: Number(this.formatInternalValue(this.marPots[5])),
-      marEneP1: Number(this.formatInternalValue(this.marEnes[0])),
-      marEneP2: Number(this.formatInternalValue(this.marEnes[1])),
-      marEneP3: Number(this.formatInternalValue(this.marEnes[2])),
-      marEneP4: Number(this.formatInternalValue(this.marEnes[3])),
-      marEneP5: Number(this.formatInternalValue(this.marEnes[4])),
-      marEneP6: Number(this.formatInternalValue(this.marEnes[5]))
+      marPotP1: Number(formatInternalValue(this.marPots[0])),
+      marPotP2: Number(formatInternalValue(this.marPots[1])),
+      marPotP3: Number(formatInternalValue(this.marPots[2])),
+      marPotP4: Number(formatInternalValue(this.marPots[3])),
+      marPotP5: Number(formatInternalValue(this.marPots[4])),
+      marPotP6: Number(formatInternalValue(this.marPots[5])),
+      marEneP1: Number(formatInternalValue(this.marEnes[0])),
+      marEneP2: Number(formatInternalValue(this.marEnes[1])),
+      marEneP3: Number(formatInternalValue(this.marEnes[2])),
+      marEneP4: Number(formatInternalValue(this.marEnes[3])),
+      marEneP5: Number(formatInternalValue(this.marEnes[4])),
+      marEneP6: Number(formatInternalValue(this.marEnes[5]))
     };
     
     this.apiService
@@ -159,66 +161,8 @@ export class ModalComponent implements OnInit{
   onGreenPowerCheckboxChange(): void {}
 
   deletePredefinedRate(): void {
-    // TODO: Backend delete predef rate.
     this.apiService.deleteCurrentPredefinedRate().subscribe(() => {
       this.activeModal.close(true);
     });
-  }
-
-  /* INPUT DECIMAL VALUE  FORMATTING*/
-
-  // Converts dot to comma for display (not strictly necessary with ngModel)
-  formatDisplayValue(value: string): string {
-    return value ? value.replace('.', ',') : '';
-  }
-
-  // Converts comma to dot for internal value
-  formatInternalValue(value: string): string {
-    return value ? value.replace(',', '.') : '';
-  }
-
-  // Handle input change
-  onInputChange(event: any): void {
-    let inputValue = event.target.value;
-
-    // Replace dots with commas and keep only numbers and one comma
-    const cleanedValue = this.cleanInput(inputValue);
-
-    // Update the display value by formatting
-    if (cleanedValue !== inputValue) {
-      event.target.value = this.formatDisplayValue(cleanedValue);
-    }
-  }
-
-  // Cleans the input to ensure only valid format is accepted
-  cleanInput(value: string): string {
-    // Remove all non-numeric characters except for a single comma
-    const cleanedValue = value.replace(/[^0-9,]/g, '');
-
-    // Match and format to '##,######'
-    const regex = /^(\d{0,2})(,\d{0,6})?$/; // Matches '##,######'
-    const match = cleanedValue.match(regex);
-
-    if (match) {
-      return match[0]; // Return the matched portion (valid format)
-    } else {
-      return ''; // Return an empty string if not matched
-    }
-  }
-
-  // Handle keypress to prevent invalid characters
-  onKeyPress(event: KeyboardEvent): void {
-    const allowedKeys = [
-      'Backspace',
-      'ArrowLeft',
-      'ArrowRight',
-      'Delete',
-      'Tab',
-      'Enter',
-      ','
-    ];
-    if (!/\d/.test(event.key) && !allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
   }
 }

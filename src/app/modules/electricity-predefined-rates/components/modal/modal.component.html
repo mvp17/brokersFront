@@ -30,13 +30,13 @@
       </div>
       <div class="col-md-2" *ngIf="this.rate === '3.0TD'">
         <div class="form-check">
-          <input 
-            class="form-check-input" 
-            type="checkbox" 
+          <input
+            class="form-check-input"
+            type="checkbox"
             id="flexCheckDefault"
             [(ngModel)]="greenPower"
             (change)="onGreenPowerCheckboxChange()"
-          >
+          />
           <label class="form-check-label" for="flexCheckDefault">
             Green power
           </label>
@@ -123,65 +123,34 @@
         <tr>
           <td><label for="consLabel" class="col-form-label">Cons</label></td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="cons[0]"
-              [value]="formatDisplayValue(cons[0])"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="cons[0]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="cons[1]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="cons[1]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="cons[2]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="cons[2]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="cons[3]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="cons[3]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="cons[4]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="cons[4]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="cons[5]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="cons[5]"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -189,64 +158,34 @@
         <tr>
           <td><label for="potLabel" class="col-form-label">Pot</label></td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="pots[0]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="pots[0]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="pots[1]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="pots[1]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="pots[2]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="pots[2]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="pots[3]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="pots[3]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="pots[4]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="pots[4]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="pots[5]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="pots[5]"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -256,58 +195,40 @@
             <label for="preBaPotLabel" class="col-form-label">PreBaPot</label>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaPots[0]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaPots[0]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaPots[1]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaPots[1]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaPots[2]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaPots[2]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaPots[3]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaPots[3]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaPots[4]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaPots[4]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaPots[5]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaPots[5]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -317,64 +238,34 @@
             <label for="MarPotLabel" class="col-form-label">MarPot</label>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marPots[0]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marPots[0]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marPots[1]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marPots[1]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marPots[2]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marPots[2]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marPots[3]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marPots[3]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marPots[4]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marPots[4]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marPots[5]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marPots[5]"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -384,58 +275,40 @@
             <label for="PreFiPotLabel" class="col-form-label">PreFiPot</label>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiPots[0]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiPots[0]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiPots[1]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiPots[1]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiPots[2]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiPots[2]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiPots[3]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiPots[3]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiPots[4]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiPots[4]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiPots[5]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiPots[5]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -445,58 +318,40 @@
             <label for="PreBaEneLabel" class="col-form-label">PreBaEne</label>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaEnes[0]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaEnes[0]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaEnes[1]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaEnes[1]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaEnes[2]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaEnes[2]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaEnes[3]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaEnes[3]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaEnes[4]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaEnes[4]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preBaEnes[5]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preBaEnes[5]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -506,64 +361,34 @@
             <label for="MarEneLabel" class="col-form-label">MarEne</label>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marEnes[0]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marEnes[0]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marEnes[1]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marEnes[1]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marEnes[2]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marEnes[2]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marEnes[3]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marEnes[3]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marEnes[4]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marEnes[4]"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="marEnes[5]"
-              (input)="onInputChange($event)"
-              (keypress)="onKeyPress($event)"
-            />
+            <app-formatted-decimal-input
+              [data]="marEnes[5]"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
 
@@ -573,58 +398,40 @@
             <label for="PreFiEneLabel" class="col-form-label">PreFiEne</label>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiEnes[0]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiEnes[0]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiEnes[1]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiEnes[1]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiEnes[2]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiEnes[2]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiEnes[3]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiEnes[3]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiEnes[4]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiEnes[4]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
           <td>
-            <input
-              type="text"
-              class="form-control text-end"
-              placeholder="0,00"
-              [(ngModel)]="preFiEnes[5]"
-              disabled="true"
-            />
+            <app-formatted-decimal-input
+              [data]="preFiEnes[5]"
+              [isDisabled]="true"
+            ></app-formatted-decimal-input>
           </td>
         </tr>
       </tbody>
@@ -643,34 +450,22 @@
       </div>
       <div class="col-md-3 me-2">
         <!-- Adjust column size as needed -->
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="rate"
-          disabled
-        />
+        <input type="text" class="form-control" [(ngModel)]="rate" disabled />
       </div>
       <div class="col-md-1 me-2">
         <label class="col-form-label">Type</label>
       </div>
       <div class="col-md-3 me-2">
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="type"
-          disabled
-        />
+        <input type="text" class="form-control" [(ngModel)]="type" disabled />
       </div>
       <div class="form-check col-md-2 me-2" *ngIf="this.rate === '3.0TD'">
-        <input 
-          class="form-check-input" 
+        <input
+          class="form-check-input"
           type="checkbox"
           [(ngModel)]="greenPower"
           disabled
-        >
-        <label *ngIf="this.rate === '3.0TD'">
-          Green power
-        </label>
+        />
+        <label *ngIf="this.rate === '3.0TD'"> Green power </label>
       </div>
     </div>
     <div class="row mb-3">

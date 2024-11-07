@@ -1,735 +1,667 @@
 <ngb-accordion [closeOthers]="false" activeIds="clientData">
-    <ngb-panel id="clientData" title="Client Data">
-        <ng-template ngbPanelContent>
-            <div class="row align-items-center">
-                <div class="col-md-1 d-flex align-items-center">
-                    <label for="firstName" class="form-label mb-0">Name</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="firstName" placeholder="Enter Name">
-                </div>
-            
-                <div class="col-md-2 d-flex align-items-center">
-                    <label for="lastName1" class="form-label mb-0">Last Name 1</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="lastName1" placeholder="Enter Last Name 1">
-                </div>
-            
-                <div class="col-md-2 d-flex align-items-center">
-                    <label for="lastName2" class="form-label mb-0">Last Name 2</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="lastName2" placeholder="Enter Last Name 2">
-                </div>
-            </div>
+  <ngb-panel id="clientData" title="Client Data">
+    <ng-template ngbPanelContent>
+      <div class="row align-items-center">
+        <div class="col-md-1 d-flex align-items-center">
+          <label for="firstName" class="form-label mb-0">Name</label>
+        </div>
+        <div class="col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            placeholder="Enter Name"
+          />
+        </div>
 
-            <br>
+        <div class="col-md-2 d-flex align-items-center">
+          <label for="lastName1" class="form-label mb-0">Last Name 1</label>
+        </div>
+        <div class="col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            id="lastName1"
+            placeholder="Enter Last Name 1"
+          />
+        </div>
 
-            <div class="row align-items-center">
-                <div class="col-md-1 d-flex align-items-center">
-                    <label for="nif" class="form-label mb-0">NIF</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="nif" placeholder="Enter NIF">
-                </div>
-            </div>
+        <div class="col-md-2 d-flex align-items-center">
+          <label for="lastName2" class="form-label mb-0">Last Name 2</label>
+        </div>
+        <div class="col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            id="lastName2"
+            placeholder="Enter Last Name 2"
+          />
+        </div>
+      </div>
 
-            <br>
+      <br />
 
-            <div class="row align-items-center">
-                <div class="col-md-1 d-flex align-items-center">
-                    <label for="cups" class="form-label mb-0">CUPS</label>
-                </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" id="cups" placeholder="Enter CUPS">
-                </div>
-            </div>
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+      <div class="row align-items-center">
+        <div class="col-md-1 d-flex align-items-center">
+          <label for="nif" class="form-label mb-0">NIF</label>
+        </div>
+        <div class="col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            id="nif"
+            placeholder="Enter NIF"
+          />
+        </div>
+      </div>
 
-<br>
+      <br />
 
-<ngb-accordion [closeOthers]="false" activeIds="supplyData">
-    <ngb-panel id="supplyData" title="Supply Data">
-        <ng-template ngbPanelContent>
-            <div class="row align-items-center">
-                <div class="col-md-1">
-                    <label for="rateDropdown">Rate:</label>
-                </div>
-                <div class="col-md-2">
-                    <div ngbDropdown class="d-inline-block w-100">
-                        <button
-                          class="btn btn-outline-success dropdown-toggle w-100"
-                          id="rateDropdown"
-                          ngbDropdownToggle
-                          type="button"
-                        >
-                          {{ rate || 'Select an option' }}
-                        </button>
-                        <div ngbDropdownMenu class="w-100">
-                          <button
-                            *ngFor="let rateOption of rateOptions"
-                            class="dropdown-item"
-                            (click)="selectRateOption(rateOption)"
-                          >
-                            {{ rateOption }}
-                          </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row align-items-center" *ngIf="this.rate !== ''">
-                <!--Cons-->
-                <div class="row mb-3">
-                  <div class="col-md-1"></div> <!-- Empty column for alignment -->
-                  <div class="col-md-10">
-                    <div class="row text-center">
-                      <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
-                        <label for="consInput{{i-1}}" class="form-label">P{{i}}</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        
-                <div class="row mb-3">
-                <label for="consLabel" class="col-form-label col-md-1">Cons</label>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-2">
-                              <input type="text" 
-                                      class="form-control text-end" 
-                                      placeholder="0,00" 
-                                      [value]="formatDisplayValue(cons[0])"
-                                      [(ngModel)]="cons[0]"
-                                      (input)="onInputChange($event)" 
-                                      (keypress)="onKeyPress($event)"
-                                      />
-                            </div>
-                            <div class="col-md-2">
-                              <input type="text" 
-                                      class="form-control text-end" 
-                                      placeholder="0,00" 
-                                      [value]="formatDisplayValue(cons[1])"
-                                      [(ngModel)]="cons[1]"
-                                      (input)="onInputChange($event)" />
-                            </div>
-                            <div class="col-md-2">
-                                <input type="text" 
-                                        class="form-control text-end" 
-                                        placeholder="0,00" 
-                                        [value]="formatDisplayValue(cons[2])"
-                                        [(ngModel)]="cons[2]"
-                                        (input)="onInputChange($event)" />
-                            </div>
-                            <div class="col-md-2">
-                                <input type="text" 
-                                        class="form-control text-end" 
-                                        placeholder="0,00" 
-                                        [value]="formatDisplayValue(cons[3])"
-                                        [(ngModel)]="cons[3]"
-                                        (input)="onInputChange($event)" />
-                            </div>
-                            <div class="col-md-2">
-                                <input type="text" 
-                                        class="form-control text-end" 
-                                        placeholder="0,00" 
-                                        [value]="formatDisplayValue(cons[4])"
-                                        [(ngModel)]="cons[4]"
-                                        (input)="onInputChange($event)" />
-                            </div>
-                            <div class="col-md-2">
-                                <input type="text" 
-                                        class="form-control text-end" 
-                                        placeholder="0,00" 
-                                        [value]="formatDisplayValue(cons[5])"
-                                        [(ngModel)]="cons[5]"
-                                        (input)="onInputChange($event)" />
-                            </div>
-                          </div>
-                    </div>
-                </div>
-                <!--Pot-->
-                <div class="row mb-3">
-                    <label for="potLabel" class="col-form-label col-md-1">Pot</label>
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <input type="text" 
-                                        class="form-control text-end" 
-                                        placeholder="0,00" 
-                                        [value]="formatDisplayValue(pots[0])"
-                                        [(ngModel)]="pots[0]"
-                                        (input)="onInputChange($event)" 
-                                        (keypress)="onKeyPress($event)"
-                                        />
-                              </div>
-                              <div class="col-md-2">
-                                <input type="text" 
-                                        class="form-control text-end"  
-                                        placeholder="0,00" 
-                                        [value]="formatDisplayValue(pots[1])"
-                                        [(ngModel)]="pots[1]"
-                                        (input)="onInputChange($event)" />
-                              </div>
-                              <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(pots[2])"
-                                          [(ngModel)]="pots[2]"
-                                          (input)="onInputChange($event)" />
-                              </div>
-                              <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(pots[3])"
-                                          [(ngModel)]="pots[3]"
-                                          (input)="onInputChange($event)" />
-                              </div>
-                              <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(pots[4])"
-                                          [(ngModel)]="pots[4]"
-                                          (input)="onInputChange($event)" />
-                              </div>
-                              <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(pots[5])"
-                                          [(ngModel)]="pots[5]"
-                                          (input)="onInputChange($event)" />
-                              </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row align-items-center" *ngIf="showType">
-                <div class="col-md-1">
-                    <label for="typeDropdown">Type:</label>
-                </div>
-                <div class="col-md-2">
-                    <div ngbDropdown class="d-inline-block w-100">
-                        <button
-                          class="btn btn-outline-success dropdown-toggle w-100"
-                          id="typeDropdown"
-                          ngbDropdownToggle
-                          type="button"
-                        >
-                          {{ type || 'Select an option' }}
-                        </button>
-                        <div ngbDropdownMenu class="w-100">
-                          <button
-                            *ngFor="let productTypeOption of productTypeOptions"
-                            class="dropdown-item"
-                            (click)="selectTypeOption(productTypeOption)"
-                          >
-                            {{ productTypeOption }}
-                          </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="row align-items-center" *ngIf="showType2td">
-                <div class="col-md-1">
-                    <label for="type2tdDropdown">Type 2td:</label>
-                </div>
-                <div class="col-md-2">
-                    <div ngbDropdown class="d-inline-block w-100">
-                        <button
-                          class="btn btn-outline-success dropdown-toggle w-100"
-                          id="type2tdDropdown"
-                          ngbDropdownToggle
-                          type="button"
-                        >
-                          {{ type2td || 'Select an option' }}
-                        </button>
-                        <div ngbDropdownMenu class="w-100">
-                          <button
-                            *ngFor="let type2tdOption of type2tdOptions"
-                            class="dropdown-item"
-                            (click)="selectType2tdOption(type2tdOption)"
-                          >
-                            {{ type2tdOption }}
-                          </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
-
-<br>
-
-<div class="row">
-    <div class="col-md-6">
-        <ngb-accordion [closeOthers]="false" activeIds="priceSelection">
-        <ngb-panel id="priceSelection" title="Price Selection">
-            <ng-template ngbPanelContent>
-                <div class="row align-items-center">
-                    <div class="col-md-3">
-                        <label for="agencyRatesDropdown">Agency rates:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <div ngbDropdown class="d-inline-block w-100">
-                            <button
-                              class="btn btn-outline-success dropdown-toggle w-100"
-                              id="agencyRatesDropdown"
-                              ngbDropdownToggle
-                              type="button"
-                            >
-                              {{ agencyRate || 'Select an option' }}
-                            </button>
-                            <div ngbDropdownMenu class="w-100">
-                              <button
-                                *ngFor="let agencyRateOption of agencyRateOptions"
-                                class="dropdown-item"
-                                (click)="selectAgencyRateOption(agencyRateOption)"
-                              >
-                                {{ agencyRateOption }}
-                              </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-
-                <div class="row align-items-center">
-                    <div class="col-md-3">
-                        <label for="predefinedRatesDropdown">Predefined rates:</label>
-                    </div>
-                    <div class="col-md-3">
-                        <div ngbDropdown class="d-inline-block w-100">
-                            <button
-                              class="btn btn-outline-success dropdown-toggle w-100"
-                              id="predefinedRatesDropdown"
-                              ngbDropdownToggle
-                              type="button"
-                            >
-                              {{ predefinedRate || 'Select an option' }}
-                            </button>
-                            <div ngbDropdownMenu class="w-100">
-                              <button
-                                *ngFor="let predefinedRateOption of predefinedRateOptions"
-                                class="dropdown-item"
-                                (click)="selectPredefinedRateOption(predefinedRateOption)"
-                              >
-                                {{ predefinedRateOption }}
-                              </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-
-                <div class="row align-items-center" *ngIf="this.agencyRate !== '' || this.predefinedRate !== ''">
-                    <div class="row mb-3">
-                      <div class="col-md-2"></div> <!-- Empty column for alignment -->
-                      <div class="col-md-10">
-                        <div class="row text-center">
-                          <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
-                            <label class="form-label">P{{i}}</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-            
-                    <div class="row mb-3">
-                        <label class="col-form-label col-md-2">EN prices ene</label>
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(pricesEneEN[0])"
-                                          [(ngModel)]="pricesEneEN[0]"
-                                          (input)="onInputChange($event)" 
-                                          (keypress)="onKeyPress($event)"
-                                          />
-                                </div>
-                                <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(pricesEneEN[1])"
-                                          [(ngModel)]="pricesEneEN[1]"
-                                          (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(pricesEneEN[2])"
-                                            [(ngModel)]="pricesEneEN[2]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(pricesEneEN[3])"
-                                            [(ngModel)]="pricesEneEN[3]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(pricesEneEN[4])"
-                                            [(ngModel)]="pricesEneEN[4]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(pricesEneEN[5])"
-                                            [(ngModel)]="pricesEneEN[5]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="potLabel" class="col-form-label col-md-2">EN prices pot</label>
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(pricesPotEN[0])"
-                                            [(ngModel)]="pricesPotEN[0]"
-                                            (input)="onInputChange($event)" 
-                                            (keypress)="onKeyPress($event)"
-                                            />
-                                  </div>
-                                  <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end"  
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(pricesPotEN[1])"
-                                            [(ngModel)]="pricesPotEN[1]"
-                                            (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(pricesPotEN[2])"
-                                              [(ngModel)]="pricesPotEN[2]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(pricesPotEN[3])"
-                                              [(ngModel)]="pricesPotEN[3]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(pricesPotEN[4])"
-                                              [(ngModel)]="pricesPotEN[4]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(pricesPotEN[5])"
-                                              [(ngModel)]="pricesPotEN[5]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-        </ngb-panel>
-        </ngb-accordion>
-    </div>
-
-    <div class="col-md-6">
-        <ngb-accordion [closeOthers]="false" activeIds="clientCurrentPrices">
-        <ngb-panel id="clientCurrentPrices" title="Client current prices">
-            <ng-template ngbPanelContent>
-                <div class="row align-items-center">
-                    <div class="row mb-3">
-                      <div class="col-md-1"></div> <!-- Empty column for alignment -->
-                      <div class="col-md-10">
-                        <div class="row text-center">
-                          <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
-                            <label class="form-label">P{{i}}</label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-            
-                    <div class="row mb-3">
-                    <label for="consLabel" class="col-form-label col-md-1">Ene</label>
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(clientPricesEne[0])"
-                                          [(ngModel)]="clientPricesEne[0]"
-                                          (input)="onInputChange($event)" 
-                                          (keypress)="onKeyPress($event)"
-                                          />
-                                </div>
-                                <div class="col-md-2">
-                                  <input type="text" 
-                                          class="form-control text-end" 
-                                          placeholder="0,00" 
-                                          [value]="formatDisplayValue(clientPricesEne[1])"
-                                          [(ngModel)]="clientPricesEne[1]"
-                                          (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(clientPricesEne[2])"
-                                            [(ngModel)]="clientPricesEne[2]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(clientPricesEne[3])"
-                                            [(ngModel)]="clientPricesEne[3]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(clientPricesEne[4])"
-                                            [(ngModel)]="clientPricesEne[4]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(clientPricesEne[5])"
-                                            [(ngModel)]="clientPricesEne[5]"
-                                            (input)="onInputChange($event)" />
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="potLabel" class="col-form-label col-md-1">Pot</label>
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end" 
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(clientPricesPot[0])"
-                                            [(ngModel)]="clientPricesPot[0]"
-                                            (input)="onInputChange($event)" 
-                                            (keypress)="onKeyPress($event)"
-                                            />
-                                  </div>
-                                  <div class="col-md-2">
-                                    <input type="text" 
-                                            class="form-control text-end"  
-                                            placeholder="0,00" 
-                                            [value]="formatDisplayValue(clientPricesPot[1])"
-                                            [(ngModel)]="clientPricesPot[1]"
-                                            (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(clientPricesPot[2])"
-                                              [(ngModel)]="clientPricesPot[2]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(clientPricesPot[3])"
-                                              [(ngModel)]="clientPricesPot[3]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(clientPricesPot[4])"
-                                              [(ngModel)]="clientPricesPot[4]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                                  <div class="col-md-2">
-                                      <input type="text" 
-                                              class="form-control text-end" 
-                                              placeholder="0,00" 
-                                              [value]="formatDisplayValue(clientPricesPot[5])"
-                                              [(ngModel)]="clientPricesPot[5]"
-                                              (input)="onInputChange($event)" />
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ng-template>
-        </ngb-panel>
-        </ngb-accordion>
-    </div>
-</div>
-
-<br>
-
-<ngb-accordion [closeOthers]="false" activeIds="savingsCostsPanel">
-  <ngb-panel id="savingsCostsPanel" title="Savings and Costs">
-      <ng-template ngbPanelContent>
-          <div class="row">
-              <!-- First Column -->
-              <div class="col-md-4">
-                  <!-- First row: Annual savings -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="annualSavings" class="col-form-label col-md-6">Annual Savings:</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="annualSavings"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="annualSavings"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-                  <!-- Second row: Monthly savings -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="monthlySavings" class="col-form-label col-md-6">Monthly Savings:</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="monthlySavings"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="monthlySavings"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-                  <!-- Third row: % savings -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="percentageSavings" class="col-form-label col-md-6">% Savings:</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="percentageSavings"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="percentageSavings"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-              </div>
-
-              <!-- Second Column -->
-              <div class="col-md-4">
-                  <!-- First row: Annual cost client -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="annualCostClient" class="col-form-label col-md-6">Annual Cost (Client):</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="annualCostClient"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="annualCostClient"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-                  <!-- Second row: Monthly cost -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="monthlyCostClient" class="col-form-label col-md-6">Monthly Cost:</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="monthlyCostClient"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="monthlyCostClient"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-              </div>
-
-              <!-- Third Column -->
-              <div class="col-md-4">
-                  <!-- First row: Annual cost EN -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="annualCostEN" class="col-form-label col-md-6">Annual Cost (EN):</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="annualCostEN"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="annualCostEN"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-                  <!-- Second row: Monthly cost EN -->
-                  <div class="row mb-3 align-items-center">
-                      <label for="monthlyCostEN" class="col-form-label col-md-6">Monthly Cost (EN):</label>
-                      <div class="col-md-6">
-                          <input type="text"
-                                 id="monthlyCostEN"
-                                 class="form-control text-end"
-                                 placeholder="0,00"
-                                 [(ngModel)]="monthlyCostEN"
-                                 (input)="onInputChange($event)"
-                                 (keypress)="onKeyPress($event)">
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </ng-template>
+      <div class="row align-items-center">
+        <div class="col-md-1 d-flex align-items-center">
+          <label for="cups" class="form-label mb-0">CUPS</label>
+        </div>
+        <div class="col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            id="cups"
+            placeholder="Enter CUPS"
+          />
+        </div>
+      </div>
+    </ng-template>
   </ngb-panel>
 </ngb-accordion>
 
-<br>
+<br />
+
+<ngb-accordion [closeOthers]="false" activeIds="supplyData">
+  <ngb-panel id="supplyData" title="Supply Data">
+    <ng-template ngbPanelContent>
+      <div class="row align-items-center">
+        <div class="col-md-1">
+          <label for="rateDropdown">Rate:</label>
+        </div>
+        <div class="col-md-2">
+          <div ngbDropdown class="d-inline-block w-100">
+            <button
+              class="btn btn-outline-success dropdown-toggle w-100"
+              id="rateDropdown"
+              ngbDropdownToggle
+              type="button"
+            >
+              {{ rate || "Select an option" }}
+            </button>
+            <div ngbDropdownMenu class="w-100">
+              <button
+                *ngFor="let rateOption of rateOptions"
+                class="dropdown-item"
+                (click)="selectRateOption(rateOption)"
+              >
+                {{ rateOption }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row align-items-center" *ngIf="this.rate !== ''">
+        <!--Cons-->
+        <div class="row mb-3">
+          <div class="col-md-1"></div>
+          <!-- Empty column for alignment -->
+          <div class="col-md-10">
+            <div class="row text-center">
+              <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+                <label for="consInput{{ i - 1 }}" class="form-label"
+                  >P{{ i }}</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="consLabel" class="col-form-label col-md-1">Cons</label>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="cons[0]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="cons[1]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="cons[2]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="cons[3]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="cons[4]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="cons[5]"
+                ></app-formatted-decimal-input>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Pot-->
+        <div class="row mb-3">
+          <label for="potLabel" class="col-form-label col-md-1">Pot</label>
+          <div class="col-md-10">
+            <div class="row">
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="pots[0]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="pots[1]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="pots[2]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="pots[3]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="pots[4]"
+                ></app-formatted-decimal-input>
+              </div>
+              <div class="col-md-2">
+                <app-formatted-decimal-input
+                  [data]="pots[5]"
+                ></app-formatted-decimal-input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center" *ngIf="showType">
+        <div class="col-md-1">
+          <label for="typeDropdown">Type:</label>
+        </div>
+        <div class="col-md-2">
+          <div ngbDropdown class="d-inline-block w-100">
+            <button
+              class="btn btn-outline-success dropdown-toggle w-100"
+              id="typeDropdown"
+              ngbDropdownToggle
+              type="button"
+            >
+              {{ type || "Select an option" }}
+            </button>
+            <div ngbDropdownMenu class="w-100">
+              <button
+                *ngFor="let productTypeOption of productTypeOptions"
+                class="dropdown-item"
+                (click)="selectTypeOption(productTypeOption)"
+              >
+                {{ productTypeOption }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row align-items-center" *ngIf="showType2td">
+        <div class="col-md-1">
+          <label for="type2tdDropdown">Type 2td:</label>
+        </div>
+        <div class="col-md-2">
+          <div ngbDropdown class="d-inline-block w-100">
+            <button
+              class="btn btn-outline-success dropdown-toggle w-100"
+              id="type2tdDropdown"
+              ngbDropdownToggle
+              type="button"
+            >
+              {{ type2td || "Select an option" }}
+            </button>
+            <div ngbDropdownMenu class="w-100">
+              <button
+                *ngFor="let type2tdOption of type2tdOptions"
+                class="dropdown-item"
+                (click)="selectType2tdOption(type2tdOption)"
+              >
+                {{ type2tdOption }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+<br />
 
 <div class="row">
-    <div class="col-md-2">
-        <button class="btn btn-success" (click)="printComparative()">Print comparative</button>
-    </div>
+  <div class="col-md-6">
+    <ngb-accordion [closeOthers]="false" activeIds="priceSelection">
+      <ngb-panel id="priceSelection" title="Price Selection">
+        <ng-template ngbPanelContent>
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <label for="agencyRatesDropdown">Agency rates:</label>
+            </div>
+            <div class="col-md-3">
+              <div ngbDropdown class="d-inline-block w-100">
+                <button
+                  class="btn btn-outline-success dropdown-toggle w-100"
+                  id="agencyRatesDropdown"
+                  ngbDropdownToggle
+                  type="button"
+                >
+                  {{ agencyRate || "Select an option" }}
+                </button>
+                <div ngbDropdownMenu class="w-100">
+                  <button
+                    *ngFor="let agencyRateOption of agencyRateOptions"
+                    class="dropdown-item"
+                    (click)="selectAgencyRateOption(agencyRateOption)"
+                  >
+                    {{ agencyRateOption }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <div class="col-md-2">
-        <button class="btn btn-success" (click)="generateContract()">Generate contract</button>
-    </div>
+          <br />
+
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <label for="predefinedRatesDropdown">Predefined rates:</label>
+            </div>
+            <div class="col-md-3">
+              <div ngbDropdown class="d-inline-block w-100">
+                <button
+                  class="btn btn-outline-success dropdown-toggle w-100"
+                  id="predefinedRatesDropdown"
+                  ngbDropdownToggle
+                  type="button"
+                >
+                  {{ predefinedRate || "Select an option" }}
+                </button>
+                <div ngbDropdownMenu class="w-100">
+                  <button
+                    *ngFor="let predefinedRateOption of predefinedRateOptions"
+                    class="dropdown-item"
+                    (click)="selectPredefinedRateOption(predefinedRateOption)"
+                  >
+                    {{ predefinedRateOption }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div
+            class="row align-items-center"
+            *ngIf="this.agencyRate !== '' || this.predefinedRate !== ''"
+          >
+            <div class="row mb-3">
+              <div class="col-md-2"></div>
+              <!-- Empty column for alignment -->
+              <div class="col-md-10">
+                <div class="row text-center">
+                  <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+                    <label class="form-label">P{{ i }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-form-label col-md-2">EN prices ene</label>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesEneEN[0]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesEneEN[1]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesEneEN[2]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesEneEN[3]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesEneEN[4]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesEneEN[5]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="potLabel" class="col-form-label col-md-2"
+                >EN prices pot</label
+              >
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesPotEN[0]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesPotEN[1]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesPotEN[2]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesPotEN[3]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesPotEN[4]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="pricesPotEN[5]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+
+  <div class="col-md-6">
+    <ngb-accordion [closeOthers]="false" activeIds="clientCurrentPrices">
+      <ngb-panel id="clientCurrentPrices" title="Client current prices">
+        <ng-template ngbPanelContent>
+          <div class="row align-items-center">
+            <div class="row mb-3">
+              <div class="col-md-1"></div>
+              <!-- Empty column for alignment -->
+              <div class="col-md-10">
+                <div class="row text-center">
+                  <div class="col-md-2" *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+                    <label class="form-label">P{{ i }}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="consLabel" class="col-form-label col-md-1">Ene</label>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesEne[0]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesEne[1]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesEne[2]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesEne[3]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesEne[4]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesEne[5]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="potLabel" class="col-form-label col-md-1">Pot</label>
+              <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesPot[0]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesPot[1]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesPot[2]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesPot[3]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesPot[4]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                  <div class="col-md-2">
+                    <app-formatted-decimal-input
+                      [data]="clientPricesPot[5]"
+                    ></app-formatted-decimal-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
 </div>
 
-<br>
+<br />
+
+<ngb-accordion [closeOthers]="false" activeIds="savingsCostsPanel">
+  <ngb-panel id="savingsCostsPanel" title="Savings and Costs">
+    <ng-template ngbPanelContent>
+      <div class="row">
+        <!-- First Column -->
+        <div class="col-md-4">
+          <!-- First row: Annual savings -->
+          <div class="row mb-3 align-items-center">
+            <label for="annualSavings" class="col-form-label col-md-6"
+              >Annual Savings:</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="annualSavings"
+                class="form-control text-end"
+                [ngModel]="annualSavings"
+                disabled
+              />
+            </div>
+          </div>
+          <!-- Second row: Monthly savings -->
+          <div class="row mb-3 align-items-center">
+            <label for="monthlySavings" class="col-form-label col-md-6"
+              >Monthly Savings:</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="monthlySavings"
+                class="form-control text-end"
+                [(ngModel)]="monthlySavings"
+                disabled
+              />
+            </div>
+          </div>
+          <!-- Third row: % savings -->
+          <div class="row mb-3 align-items-center">
+            <label for="percentageSavings" class="col-form-label col-md-6"
+              >% Savings:</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="percentageSavings"
+                class="form-control text-end"
+                [(ngModel)]="percentageSavings"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Second Column -->
+        <div class="col-md-4">
+          <!-- First row: Annual cost client -->
+          <div class="row mb-3 align-items-center">
+            <label for="annualCostClient" class="col-form-label col-md-6"
+              >Annual Cost (Client):</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="annualCostClient"
+                class="form-control text-end"
+                [(ngModel)]="annualCostClient"
+                disabled
+              />
+            </div>
+          </div>
+          <!-- Second row: Monthly cost -->
+          <div class="row mb-3 align-items-center">
+            <label for="monthlyCostClient" class="col-form-label col-md-6"
+              >Monthly Cost:</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="monthlyCostClient"
+                class="form-control text-end"
+                [(ngModel)]="monthlyCostClient"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Third Column -->
+        <div class="col-md-4">
+          <!-- First row: Annual cost EN -->
+          <div class="row mb-3 align-items-center">
+            <label for="annualCostEN" class="col-form-label col-md-6"
+              >Annual Cost (EN):</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="annualCostEN"
+                class="form-control text-end"
+                [(ngModel)]="annualCostEN"
+                disabled
+              />
+            </div>
+          </div>
+          <!-- Second row: Monthly cost EN -->
+          <div class="row mb-3 align-items-center">
+            <label for="monthlyCostEN" class="col-form-label col-md-6"
+              >Monthly Cost (EN):</label
+            >
+            <div class="col-md-6">
+              <input
+                type="text"
+                id="monthlyCostEN"
+                class="form-control text-end"
+                [(ngModel)]="monthlyCostEN"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+
+<br />
+
+<div class="row">
+  <div class="col-md-2">
+    <button class="btn btn-success" (click)="printComparative()">
+      Print comparative
+    </button>
+  </div>
+
+  <div class="col-md-2">
+    <button class="btn btn-success" (click)="generateContract()">
+      Generate contract
+    </button>
+  </div>
+</div>
+
+<br />

@@ -1,0 +1,9 @@
+<input
+  type="text"
+  class="form-control text-end"
+  placeholder="0,000000"
+  [(ngModel)]="data"
+  (keypress)="onKeyPress($event)"
+  (input)="onInputChange($event)"
+  [disabled]="isDisabled"
+/>

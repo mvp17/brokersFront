@@ -9,13 +9,15 @@ import { TableComponent } from './components/table/table.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './components/header/header.component';
+import { FormattedDecimalInputComponent } from './components/formatted-decimal-input/formatted-decimal-input.component';
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
     TableComponent,
-    HeaderComponent
+    HeaderComponent,
+    FormattedDecimalInputComponent
   ],
   imports: [
     RouterModule,
@@ -31,7 +33,8 @@ import { HeaderComponent } from './components/header/header.component';
     RouterModule,
     SidebarComponent,
     TableComponent,
-    HeaderComponent
+    HeaderComponent,
+    FormattedDecimalInputComponent
   ],
   providers: [
     SidebarComponent,

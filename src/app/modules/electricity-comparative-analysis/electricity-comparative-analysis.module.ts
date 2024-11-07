@@ -4,6 +4,7 @@ import { ElectricityComparativeAnalysisComponent } from './components/electricit
 import { ElectricityComparativeAnalysisRoutingModule } from './electricity-comparative-analysis-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from "../../core/shared.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     ElectricityComparativeAnalysisRoutingModule,
     FormsModule,
-  ],
+    SharedModule
+],
   bootstrap: [ElectricityComparativeAnalysisComponent]
 })
 export class ElectricityComparativeAnalysisModule { }

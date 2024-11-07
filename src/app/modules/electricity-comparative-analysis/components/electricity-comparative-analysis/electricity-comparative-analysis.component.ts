@@ -84,31 +84,6 @@ export class ElectricityComparativeAnalysisComponent {
 		this.type2td = type2td;
 	}
 
-  	// Converts dot to comma for display
-	formatDisplayValue(value: string): string {
-		return value ? value.replace('.', ',') : '';
-	}
-	
-	// Converts comma to dot for internal value
-	formatInternalValue(value: string): string {
-		return value ? value.replace(',', '.') : '';
-	}
-	
-	// Handle input change
-	onInputChange(event: any): void {
-		let inputValue = event.target.value;
-		// Replace dots with commas and remove non-numeric characters except commas
-		inputValue = inputValue.replace(/\./g, ',').replace(/[^0-9,]/g, '');
-	}
-
-	// Handle keypress to prevent invalid characters
-	onKeyPress(event: KeyboardEvent): void {
-		const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab', 'Enter', ',', '.'];
-		if (!/\d/.test(event.key) && !allowedKeys.includes(event.key)) {
-			event.preventDefault();
-		}
-	}
-
 	selectAgencyRateOption(agencyRate: string) : void {
 		this.agencyRate = agencyRate;
 	}
