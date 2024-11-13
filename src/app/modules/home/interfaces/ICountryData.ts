@@ -1,9 +1,9 @@
-export interface DataPoint {
+export interface IDataPoint {
   name: string;
   value: number;
 }
 
-export interface CountryData {
+export interface ICountryData {
   name: string;
-  series: DataPoint[];
+  series: IDataPoint[];
 }
