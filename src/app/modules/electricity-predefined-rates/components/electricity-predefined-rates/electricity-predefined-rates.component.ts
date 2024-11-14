@@ -5,7 +5,7 @@ import { ExcelService } from 'src/app/core/services/excel/excel.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { Subscription } from 'rxjs';
-import { predefinedRatesApiService } from '../../services/api.service';
+import { ElectricityPredefinedRatesApiService } from '../../services/api.service';
 import { IGetElectricityPredefinedRates } from '../../interfaces/get-electricity-predefined-rates';
 import { ElectricityPredefinedRatesResultDataTable } from '../../interfaces/electricity-predefined-rates-result-data-table';
 
@@ -38,7 +38,7 @@ export class ElectricityPredefinedRatesComponent implements OnInit, OnDestroy {
   
   constructor(public tableService: TableService, 
               private excelService: ExcelService,
-              private apiService: predefinedRatesApiService,
+              private electricityPredefinedRatesApiService: ElectricityPredefinedRatesApiService,
               private modalService: NgbModal) {
     this.columns = HEADERS.tableHeader;
     // Show table
@@ -62,8 +62,8 @@ export class ElectricityPredefinedRatesComponent implements OnInit, OnDestroy {
   private getPredefinedRates(): void {
     this.tableService.results = [];
     this.subscriptions.push(
-      this.apiService.getPredefinedRates().subscribe((predefinedRates: IGetElectricityPredefinedRates[]) => {
-        this.apiService.predefinedRates = predefinedRates;
+      this.electricityPredefinedRatesApiService.getPredefinedRates().subscribe((predefinedRates: IGetElectricityPredefinedRates[]) => {
+        this.electricityPredefinedRatesApiService.predefinedRates = predefinedRates;
         for (const element of predefinedRates) {
           const result: ElectricityPredefinedRatesResultDataTable = {
             rateId: element.id,
@@ -118,14 +118,14 @@ export class ElectricityPredefinedRatesComponent implements OnInit, OnDestroy {
         break;
       case 'detail':
         currentRateId = evento[1][0];
-        this.apiService.currentPredefinedRateId = currentRateId;
+        this.electricityPredefinedRatesApiService.currentPredefinedRateId = currentRateId;
         modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
         modalRef.componentInstance.readCurrentRateOrigin = true;
         break;
       
       case 'delete':
         currentRateId = evento[1][0];
-        this.apiService.currentPredefinedRateId = currentRateId;
+        this.electricityPredefinedRatesApiService.currentPredefinedRateId = currentRateId;
         modalRef = this.modalService.open(ModalComponent, { size: 'xl'});
         modalRef.componentInstance.readCurrentRateOrigin = true;
         modalRef.closed.subscribe(() => {

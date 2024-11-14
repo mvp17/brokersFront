@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationResponse } from '../../interfaces/AuthenticationResponse';
+import { BrokersApiService } from 'src/app/core/services/brokers/brokers-api.service';
+import { IidNameDto } from 'src/app/core/interfaces/idNameDto';
 
 @Component({
   selector: 'app-signin',
@@ -19,6 +21,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   constructor(
       public authService: AuthService,
       private fb: FormBuilder,
+      private brokersApiService: BrokersApiService,
       private router: Router
     ) {
     this.subscriptions = [];
@@ -55,9 +58,18 @@ export class SigninComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.authService.signIn(this.signInForm.value).subscribe((res: AuthenticationResponse) => {
         sessionStorage.setItem('token', res.token);
+        this.authService.setFullName(res.fullName);
+        this.getBrokers();
         this.router.navigate(['']);
       })
     );
+  }
+
+  private getBrokers() {
+    this.brokersApiService.getBrokers().subscribe((brokers: IidNameDto[]) => {
+      this.brokersApiService.brokers = brokers;
+      this.brokersApiService.filteredBrokers = [...this.brokersApiService.brokers];
+    })
   }
 
   public goToSignUp(): void {

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { Subscription } from 'rxjs';
-import { ApiService } from '../../services/api.service';
+import { HomeApiService } from '../../services/home-api.service';
 import { ICountryData, IDataPoint } from '../../interfaces/ICountryData';
 
 @Component({
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   showYAxisLabel = true;
   yAxisLabel = 'Population';
 
-  constructor(private apiService: ApiService) {
+  constructor(private homeApiService: HomeApiService) {
     this.subscriptions = [];
     this.countries = [];
     this.single = [];
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private getCountries(): void {
     this.subscriptions.push(
-      this.apiService.getCountries().subscribe((countries: ICountryData[]) => {
+      this.homeApiService.getCountries().subscribe((countries: ICountryData[]) => {
         this.countries = countries;
       })
     );
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private getSingle(): void {
     this.subscriptions.push(
-      this.apiService.getSingle().subscribe((single: IDataPoint[]) => {
+      this.homeApiService.getSingle().subscribe((single: IDataPoint[]) => {
         this.single = single;
       })
     );

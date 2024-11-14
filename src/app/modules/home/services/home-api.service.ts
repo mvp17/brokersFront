@@ -8,7 +8,7 @@ import { ICountryData, IDataPoint } from '../interfaces/ICountryData';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class HomeApiService {
   private URL: string;
   
   constructor(
@@ -22,13 +22,13 @@ export class ApiService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.authService.getIdToken()}`);
-    return this.http.get<ICountryData[]>(this.URL + 'api/data/countries', { headers });
+    return this.http.get<ICountryData[]>(this.URL + 'api/home/countries', { headers });
   }
 
   public getSingle(): Observable<IDataPoint[]> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Authorization', `Bearer ${this.authService.getIdToken()}`);
-    return this.http.get<IDataPoint[]>(this.URL + 'api/data/single', { headers });
+    return this.http.get<IDataPoint[]>(this.URL + 'api/home/single', { headers });
   }
 }

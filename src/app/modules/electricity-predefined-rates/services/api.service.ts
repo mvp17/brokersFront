@@ -9,7 +9,7 @@ import { IPostElectricityPredefinedRates } from '../interfaces/post-electricity-
 @Injectable({
   providedIn: 'root',
 })
-export class predefinedRatesApiService {
+export class ElectricityPredefinedRatesApiService {
   private URL: string;
 
   public predefinedRates: IGetElectricityPredefinedRates[];

@@ -1,7 +1,7 @@
 <header class="app-header">
   <div class="brokers" *ngIf="this.authService.loggedIn()">
     <button (click)="toggleBrokersDropdown()" class="brokers-button">
-      Brokers ▼
+      <fa-icon [icon]="usersIcon"></fa-icon> {{selectedBroker.name}} ▼
     </button>
 
     <!-- Brokers Dropdown Content -->
@@ -16,7 +16,7 @@
 
       <div class="dropdown-list">
         <div
-          *ngFor="let broker of filteredBrokers"
+          *ngFor="let broker of brokersApiService.filteredBrokers"
           class="dropdown-item"
           (click)="selectBroker(broker)"
         >
@@ -29,7 +29,7 @@
   <!-- Profile dropdown menu -->
   <div class="profile-menu" *ngIf="this.authService.loggedIn()">
     <button (click)="toggleProfileDropdown()" class="profile-icon">
-      Profile ▼
+      <fa-icon [icon]="userIcon"></fa-icon> {{authService.getFullName()}} ▼
     </button>
 
     <!-- Profile Dropdown Content -->

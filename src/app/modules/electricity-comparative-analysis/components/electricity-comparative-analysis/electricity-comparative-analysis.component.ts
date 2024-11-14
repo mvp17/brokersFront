@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ElectricityComparativeAnalysisApiService } from '../../services/api.service';
+import { Subscription } from 'rxjs';
+import { ElectricityPredefinedRatesApiService } from 'src/app/modules/electricity-predefined-rates/services/api.service';
+import { IGetElectricityPredefinedRates } from 'src/app/modules/electricity-predefined-rates/interfaces/get-electricity-predefined-rates';
+import { IidNameDto } from 'src/app/core/interfaces/idNameDto';
 
 @Component({
   selector: 'app-electricity-comparative-analysis',
   templateUrl: './electricity-comparative-analysis.component.html',
   styleUrls: ['./electricity-comparative-analysis.component.scss']
 })
-export class ElectricityComparativeAnalysisComponent {
+export class ElectricityComparativeAnalysisComponent implements OnInit, OnDestroy {
+	private subscriptions: Subscription[];
+	
 	rate: string;
 	rateOptions: string[];
   	showType2td: boolean;
@@ -20,10 +27,10 @@ export class ElectricityComparativeAnalysisComponent {
 	pricesPotEN: string[];
 	clientPricesEne: string[];
 	clientPricesPot: string[];
-	agencyRate: string;
-	agencyRateOptions: string[];
-	predefinedRate: string;
-	predefinedRateOptions: string[];
+	agencyRateId: number;
+	agencyRateOptions: IidNameDto[];
+	predefinedRateId: number;
+	predefinedRateOptions: IidNameDto[];
 	annualSavings: string;
 	monthlySavings: string;
 	percentageSavings: string;
@@ -34,7 +41,11 @@ export class ElectricityComparativeAnalysisComponent {
 	isAgencyRatesDropdown: boolean = false;
 	isPredefinedRatesDropdown: boolean = false;
 
-  	constructor() {
+  	constructor(
+		private electricityComparativeAnalysisApiService: ElectricityComparativeAnalysisApiService,
+		private electricityPredefinedRatesApiService: ElectricityPredefinedRatesApiService
+	) {
+		this.subscriptions = [];
 		this.rate = '';
 		this.annualSavings = '';
 		this.monthlySavings = '';
@@ -44,10 +55,10 @@ export class ElectricityComparativeAnalysisComponent {
 		this.annualCostClient = '';
 		this.annualCostEN = '';
 		this.monthlyCostEN = '';
-		this.predefinedRate = '';
-		this.agencyRate = '';
-		this.predefinedRateOptions = ['rate 1', 'rate 2']
-		this.agencyRateOptions = ['Fuji', 'Gala', 'Williams'];
+		this.predefinedRateId = 0;
+		this.agencyRateId = 0;
+		this.predefinedRateOptions = [];
+		this.agencyRateOptions = [];
 		this.rateOptions = ['2.0TD', '3.0TD'];
 		this.productTypeOptions = ['Fixed', 'Indexed'];
 		this.showType2td = false;
@@ -62,6 +73,40 @@ export class ElectricityComparativeAnalysisComponent {
 		this.pricesPotEN = ['', '', '', '', '', ''];
 		this.clientPricesPot = ['', '', '', '', '', ''];
   	}
+
+	ngOnDestroy(): void {
+		this.subscriptions.forEach((subscription: Subscription) => {
+			subscription.unsubscribe();
+		});
+	}
+	ngOnInit(): void {
+		this.getAgencyRates();
+		this.getPredefinedRates();
+	}
+
+	getAgencyRates() {
+		this.subscriptions.push(
+      		this.electricityComparativeAnalysisApiService.getAgencyRates().subscribe((agencyRates: IidNameDto[]) => {
+				console.log(agencyRates)
+				this.agencyRateOptions = agencyRates;
+			})
+		);
+	}
+	getPredefinedRates() {
+		this.subscriptions.push(
+			this.electricityPredefinedRatesApiService.getPredefinedRates().subscribe((predefinedRates: IGetElectricityPredefinedRates[]) => {				
+				console.log(predefinedRates)
+				predefinedRates.map((predefinedRate: IGetElectricityPredefinedRates) => {
+					this.predefinedRateOptions.push(
+						{
+							id: predefinedRate.id,
+							name: predefinedRate.name
+						}
+					);
+				});
+		  })
+	  );
+	}
 
   	selectRateOption(option: string) {
 		this.rate = option;
@@ -85,19 +130,19 @@ export class ElectricityComparativeAnalysisComponent {
 		this.type2td = type2td;
 	}
 
-	selectAgencyRateOption(agencyRate: string) : void {
-		this.agencyRate = agencyRate;
+	selectAgencyRateOption(agencyRateId: number) : void {
+		this.agencyRateId = agencyRateId;
 		this.isPredefinedRatesDropdown = true;
 	}
 
-	selectPredefinedRateOption(predefinedRate: string): void {
-		this.predefinedRate = predefinedRate;
+	selectPredefinedRateOption(predefinedRateId: number): void {
+		this.predefinedRateId = predefinedRateId;
 		this.isAgencyRatesDropdown = true;
 	}
 
 	resetPriceSelection() {
-		this.agencyRate = '';
-		this.predefinedRate = '';
+		this.agencyRateId = 0;
+		this.predefinedRateId = 0;
 		this.isAgencyRatesDropdown = false;
 		this.isPredefinedRatesDropdown = false;
 	}

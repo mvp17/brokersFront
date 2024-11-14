@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { predefinedRatesApiService } from '../../services/api.service';
+import { ElectricityPredefinedRatesApiService } from '../../services/api.service';
 import { IPostElectricityPredefinedRates } from '../../interfaces/post-electricity-predefined-rates';
 import { IGetElectricityPredefinedRates } from '../../interfaces/get-electricity-predefined-rates';
 import { formatDisplayValue, formatInternalValue } from 'src/app/core/functions/formatting-value';
@@ -43,7 +43,7 @@ export class ModalComponent implements OnInit{
 
   constructor(
     public activeModal: NgbActiveModal,
-    private apiService: predefinedRatesApiService
+    private electricityPredefinedRatesApiService: ElectricityPredefinedRatesApiService
   ) {
     this.createNewRateOrigin = false;
     this.cons = ['', '', '', '', '', ''];
@@ -76,7 +76,7 @@ export class ModalComponent implements OnInit{
 
   ngOnInit(): void {
     if (this.readCurrentRateOrigin || this.deleteCurrentRateOrigin) {
-      this.apiService.getPredefinedRate().subscribe((predefinedRate: IGetElectricityPredefinedRates) => {
+      this.electricityPredefinedRatesApiService.getPredefinedRate().subscribe((predefinedRate: IGetElectricityPredefinedRates) => {
         this.rate = predefinedRate.rate;
         this.type = predefinedRate.type;
         if (this.rate === '2.0TD') {
@@ -150,7 +150,7 @@ export class ModalComponent implements OnInit{
       marEneP6: Number(formatInternalValue(this.marEnes[5]))
     };
     
-    this.apiService
+    this.electricityPredefinedRatesApiService
       .createNewPredefinedRate(newPredefinedRate)
       .subscribe(() => {
         this.activeModal.close(true);
@@ -161,7 +161,7 @@ export class ModalComponent implements OnInit{
   onGreenPowerCheckboxChange(): void {}
 
   deletePredefinedRate(): void {
-    this.apiService.deleteCurrentPredefinedRate().subscribe(() => {
+    this.electricityPredefinedRatesApiService.deleteCurrentPredefinedRate().subscribe(() => {
       this.activeModal.close(true);
     });
   }

@@ -1,29 +1,36 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { AuthService } from 'src/app/modules/login/auth/auth.service';
+import { faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { IidNameDto } from '../../interfaces/idNameDto';
+import { BrokersApiService } from '../../services/brokers/brokers-api.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  userIcon = faUser;
+  usersIcon = faUsers;
+  selectedBroker: IidNameDto;
   brokersDropdownOpen = false;
   profileDropdownOpen = false;
-  searchText = '';
-  brokers = [
-    { name: 'Broker 1' },
-    { name: 'Broker 2' },
-    { name: 'Broker 3' },
-    { name: 'Broker 4' },
-    { name: 'Broker 5' },
-    { name: 'Broker 6' }
-  ];
-  filteredBrokers = [...this.brokers];
+  searchText = '';  
+  
   private clickListener: (() => void) | null = null;
 
-  constructor(private renderer: Renderer2, 
-              private elRef: ElementRef,
-              public authService: AuthService) {}
+  constructor(
+    private renderer: Renderer2,
+    private elRef: ElementRef,
+    public authService: AuthService,
+    public brokersApiService: BrokersApiService
+  ) {
+    this.selectedBroker = {
+      id: 0,
+      name: "Select a broker"
+    }
+  }
 
   toggleBrokersDropdown() {
     this.brokersDropdownOpen = !this.brokersDropdownOpen;
@@ -42,13 +49,13 @@ export class HeaderComponent {
   }
 
   filterBrokers() {
-    this.filteredBrokers = this.brokers.filter(broker =>
+    this.brokersApiService.filteredBrokers = this.brokersApiService.brokers.filter((broker) =>
       broker.name.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
 
-  selectBroker(broker: any) {
-    console.log('Selected Broker:', broker);
+  selectBroker(broker: IidNameDto) {
+    this.selectedBroker = broker
     this.closeDropdowns(); // Close dropdown after selection
   }
 

@@ -14,10 +14,20 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private URL: string;
+  private fullName: string;
 
   constructor(private http: HttpClient, private router: Router) {
     this.URL = environment.urlBackendApi;
-   }
+    this.fullName = "";
+  }
+
+  public getFullName(): string {
+    return this.fullName;
+  }
+
+  public setFullName(fullName: string): void {
+    this.fullName = fullName;
+  }
 
   public signUp(request: RegisterRequest): Observable<AuthenticationResponse> {
     sessionStorage.setItem('email', request.email);
